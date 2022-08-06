@@ -10,7 +10,7 @@ namespace Catalog.API.Data.SeedDatas
             {
                 new Category()
                 {
-                    CategoryName =
+                    CategoryName ="he"
                 }
             };
         }

@@ -1,6 +1,7 @@
 ﻿using Catalog.API.Data.Interfaces;
 using Catalog.API.Data.SeedDatas;
 using Catalog.API.Entities;
+using MongoDB.Driver;
 
 namespace Catalog.API.Data
 {
