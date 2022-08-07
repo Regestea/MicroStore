@@ -7,15 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{1C93D8E4-333F-4803-826C-237064FE0227}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{709484A1-AEEE-4896-80FC-430E5D10B843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{709484A1-AEEE-4896-80FC-430E5D10B843}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Application", "Services\Catalog\Catalog.Application\Catalog.Application.csproj", "{4C7D60FA-2FCB-4CFE-8E94-338A39F67DE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Application", "Services\Catalog\Catalog.Application\Catalog.Application.csproj", "{4C7D60FA-2FCB-4CFE-8E94-338A39F67DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "Services\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{CC11ECDF-B416-456E-8770-5FEC139E35B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "Services\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{CC11ECDF-B416-456E-8770-5FEC139E35B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Domain", "Services\Catalog\Catalog.Domain\Catalog.Domain.csproj", "{2A31BA35-2496-4158-8680-B9541C7B847A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Domain", "Services\Catalog\Catalog.Domain\Catalog.Domain.csproj", "{2A31BA35-2496-4158-8680-B9541C7B847A}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{60E98CC6-03DA-4BB7-8DC3-7F10D54F9FA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogCategory", "CatalogCategory", "{CA46A0F7-3D69-4070-8187-D07F471F9C34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogCategory.API", "Services\CatalogCategory\CatalogCategory.API\CatalogCategory.API.csproj", "{F942CF38-BA2C-4A6F-A75C-73821C5A0CB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogBrand", "CatalogBrand", "{84C2FAE3-AAD8-40C7-9DB7-258BE1A93385}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogBrand.API", "Services\CatalogBrand\CatalogBrand.API\CatalogBrand.API.csproj", "{442E8223-40D7-45CE-9C9E-3AE0756A0B54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +51,14 @@ Global
 		{60E98CC6-03DA-4BB7-8DC3-7F10D54F9FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E98CC6-03DA-4BB7-8DC3-7F10D54F9FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60E98CC6-03DA-4BB7-8DC3-7F10D54F9FA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F942CF38-BA2C-4A6F-A75C-73821C5A0CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F942CF38-BA2C-4A6F-A75C-73821C5A0CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F942CF38-BA2C-4A6F-A75C-73821C5A0CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F942CF38-BA2C-4A6F-A75C-73821C5A0CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442E8223-40D7-45CE-9C9E-3AE0756A0B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442E8223-40D7-45CE-9C9E-3AE0756A0B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442E8223-40D7-45CE-9C9E-3AE0756A0B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442E8223-40D7-45CE-9C9E-3AE0756A0B54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +69,10 @@ Global
 		{4C7D60FA-2FCB-4CFE-8E94-338A39F67DE7} = {1C93D8E4-333F-4803-826C-237064FE0227}
 		{CC11ECDF-B416-456E-8770-5FEC139E35B8} = {1C93D8E4-333F-4803-826C-237064FE0227}
 		{2A31BA35-2496-4158-8680-B9541C7B847A} = {1C93D8E4-333F-4803-826C-237064FE0227}
+		{CA46A0F7-3D69-4070-8187-D07F471F9C34} = {D85110A3-F063-479A-93E5-FBDA48E6F976}
+		{F942CF38-BA2C-4A6F-A75C-73821C5A0CB9} = {CA46A0F7-3D69-4070-8187-D07F471F9C34}
+		{84C2FAE3-AAD8-40C7-9DB7-258BE1A93385} = {D85110A3-F063-479A-93E5-FBDA48E6F976}
+		{442E8223-40D7-45CE-9C9E-3AE0756A0B54} = {84C2FAE3-AAD8-40C7-9DB7-258BE1A93385}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6192FE8C-FB5A-47BE-9ACC-902BF5209F2D}
