@@ -1,8 +1,8 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Catalog.API.Entities
+namespace CatalogBrand.API.Entities
 {
-    public class Brands : BaseEntity
+    public class Brand : BaseEntity
     {
         [BsonRequired]
         public string CategoryName { get; set; }

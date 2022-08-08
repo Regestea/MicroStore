@@ -10,13 +10,24 @@ namespace Catalog.API.Data.SeedDatas
             {
                 new Product()
                 {
-                    Id = "602d2149e773f2a3990b47f5",
+                    Id = "62eff26faa2a7d20bc66fb8e",
                     CategoryName = "hello",
                     Title ="gggd",
                     TechnicalDetail = new List<TechnicalDetail>(){new TechnicalDetail()
                     {
                         Description = "dis good",
                         Title = "titledisgood"
+                    }}
+                },
+                new Product()
+                {
+                    Id = "62eff28e6d75d45a6581e289",
+                    CategoryName = "hello2",
+                    Title ="gggd2",
+                    TechnicalDetail = new List<TechnicalDetail>(){new TechnicalDetail()
+                    {
+                        Description = "dis good2",
+                        Title = "titledisgood2"
                     }}
                 }
             };

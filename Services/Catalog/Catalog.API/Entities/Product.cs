@@ -10,6 +10,9 @@ namespace Catalog.API.Entities
         [BsonRequired]
         public string BrandName { get; set; }
 
+        [BsonRequired]
+        public string BrandId { get; set; }
+
         public string Color { get; set; }
 
         public string HexColor { get; set; }

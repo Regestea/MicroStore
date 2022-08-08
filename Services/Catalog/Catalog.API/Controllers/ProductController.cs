@@ -6,19 +6,19 @@ namespace Catalog.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private ICatalogContext _catalogContext;
 
-        public ValuesController(ICatalogContext catalogContext)
+        public ProductController(ICatalogContext catalogContext)
         {
             _catalogContext = catalogContext;
         }
 
         [HttpGet]
-        public async Task<IActionResult> h()
+        public async Task<IActionResult> gg()
         {
-            var ss = await _catalogContext.Products.FindAsync(p => true).Result.ToListAsync();
+            var ss = await _catalogContext.Products.Find(p => true).ToListAsync();
             return Ok(ss);
         }
     }

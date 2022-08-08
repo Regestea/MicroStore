@@ -16,6 +16,5 @@ namespace Catalog.API.Data
             CatalogContextSeed.SeedData(Products, ProductSeed.Get());
         }
         public IMongoCollection<Product> Products { get; }
-        public IMongoCollection<Category> Categories { get; }
     }
 }

@@ -8,7 +8,23 @@ services:
     ports:
         - "27017:27017"
     volumes:
-        - ./mongo_data:/data/db
+        - ./mongo_data_catalogdb:/data/catalogdb
+
+  catalogcategorydb:
+    container_name: catalogcategorydb
+    restart: always
+    ports:
+        - "27018:27017"
+    volumes:
+        - ./mongo_data_catalogcategorydb:/data/catalogcategorydb
+
+  catalogbranddb:
+    container_name: catalogbranddb
+    restart: always
+    ports:
+        - "27019:27017"
+    volumes:
+        - ./mongo_data_catalogbranddb:/data/catalogbranddb
 
   catalog.api:
     container_name: catalog.api
@@ -20,3 +36,25 @@ services:
       - catalogdb
     ports:
       - "8000:80"
+
+  catalogbrand.api:
+    container_name: catalogbrand.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogbranddb:27019"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
+    depends_on:
+      - catalogbranddb
+    ports:
+      - "8001:80"
+
+  catalogcategory.api:
+    container_name: catalogcategory.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogcategorydb:27018"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
+    depends_on:
+      - catalogcategorydb
+    ports:
+      - "8002:80"
