@@ -1,5 +1,5 @@
-using CatalogBrand.API.Data;
-using CatalogBrand.API.Data.Interfaces;
+using CatalogComment.API.Data;
+using CatalogComment.API.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ICatalogBrandContext, CatalogBrandContext>();
+builder.Services.AddScoped<ICatalogCommentContext, CatalogCommentContext>();
 
 var app = builder.Build();
 
