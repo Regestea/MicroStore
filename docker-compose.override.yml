@@ -1,0 +1,79 @@
+version: '3.4'
+
+services:
+
+  catalogdb:
+    container_name: catalogdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_catalogdb_data:/data/db
+    command: ["mongod", "--port", "27017"]
+
+  catalogbranddb:
+    container_name: catalogbranddb
+    restart: always
+    ports:
+        - "27018:27018"
+    volumes:
+        - ./mongo_catalogbranddb_data:/data/db
+    command: ["mongod", "--port", "27018"]
+
+  catalogcategorydb:
+    container_name: catalogcategorydb
+    restart: always
+    ports:
+        - "27019:27019"
+    volumes:
+        - ./mongo_catalogcategorydb_data:/data/db
+    command: ["mongod", "--port", "27019"]
+
+  catalogcommentdb:
+    container_name: catalogcommentdb
+    restart: always
+    ports:
+        - "27020:27020"
+    volumes:
+        - ./mongo_catalogcommentdb_data:/data/db
+    command: ["mongod", "--port", "27020"]
+
+
+
+  catalog.api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
+    depends_on:
+      - catalogdb
+    ports:
+      - "8000:80"
+
+  catalogbrand.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogbranddb:27018"
+    depends_on:
+      - catalogbranddb
+    ports:
+      - "8001:80"
+
+  catalogcategory.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogcategorydb:27019"
+    depends_on:
+      - catalogcategorydb
+    ports:
+      - "8002:80"
+
+  catalogcomment.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogcommentdb:27020"
+    depends_on:
+      - catalogcommentdb
+    ports:
+      - "8003:80"
+

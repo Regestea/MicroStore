@@ -362,3 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /mongo_data
+/mongo_catalogbranddb_data
+/mongo_catalogcategorydb_data
+/mongo_catalogcommentdb_data
+/mongo_catalogdb_data
