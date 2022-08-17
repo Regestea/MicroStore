@@ -1,15 +1,16 @@
 using CatalogComment.API.Data;
 using CatalogComment.API.Data.Interfaces;
+using CatalogComment.API.Repositories;
+using CatalogComment.API.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ICatalogCommentContext, CatalogCommentContext>();
+builder.Services.AddSingleton<ICatalogCommentContext, CatalogCommentContext>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 var app = builder.Build();
 

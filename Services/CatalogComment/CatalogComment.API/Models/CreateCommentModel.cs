@@ -1,15 +1,13 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel.DataAnnotations;
 
-namespace CatalogComment.API.Entities
+namespace CatalogComment.API.Models
 {
-    public class Comment : BaseEntity
+    public class CreateCommentModel
     {
         [BsonRequired]
         public string UserId { get; set; }
 
         [BsonRequired]
-        [MaxLength(200)]
         public string UserComment { get; set; }
 
         [BsonRequired]
