@@ -1,6 +1,7 @@
 ﻿using CatalogComment.API.Data.Interfaces;
 using CatalogComment.API.Entities;
 using CatalogComment.API.Extensions;
+using CatalogComment.API.GrpcServices;
 using CatalogComment.API.Models;
 using CatalogComment.API.Repositories.Interfaces;
 using MongoDB.Driver;
@@ -10,11 +11,13 @@ namespace CatalogComment.API.Repositories
     public class CommentRepository : ICommentRepository
     {
         private ICatalogCommentContext _catalogCommentContext;
+        private ProductGrpcService _productGrpcService;
 
-        public CommentRepository(ICatalogCommentContext catalogCommentContext)
+        public CommentRepository(ICatalogCommentContext catalogCommentContext, ProductGrpcService productGrpcService)
         {
             _catalogCommentContext =
                 catalogCommentContext ?? throw new ArgumentNullException(nameof(catalogCommentContext));
+            _productGrpcService = productGrpcService;
         }
 
 
@@ -31,7 +34,12 @@ namespace CatalogComment.API.Repositories
         {
             //TODO : cheack userId exsist by grpc request
 
-            //TODO : cheack productId exsist by grpc request
+            var existProduct = await _productGrpcService.ExistProductAsync(commentModel.ProductId);
+
+            if (existProduct == false)
+            {
+                return new Exception("productId doesn't found").ToString();
+            }
 
             Comment comment = new Comment()
             {

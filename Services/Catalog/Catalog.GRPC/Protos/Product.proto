@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "Catalog.GRPC.Protos";
+
+service ProductProtoService {
+
+	rpc ExistProduct (ExistProductRequest) returns (ExistProductResponse);	  
+}
+
+
+message ExistProductRequest {
+	string productId = 1;
+}
+
+message ExistProductResponse {
+	bool Exist = 1;
+}
