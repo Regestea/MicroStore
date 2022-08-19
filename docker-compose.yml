@@ -41,3 +41,10 @@ services:
       context: .
       dockerfile: Services/CatalogComment/CatalogComment.API/Dockerfile
 
+
+  catalog.grpc:
+    image: ${DOCKER_REGISTRY-}cataloggrpc
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.GRPC/Dockerfile
+
