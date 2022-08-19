@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ICatalogCommentContext, CatalogCommentContext>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddGrpcClient<ProductProtoService.ProductProtoServiceClient>(o =>
-    o.Address = new Uri(builder.Configuration.GetSection("GrpcSettings:DiscountUrl").Value));
+    o.Address = new Uri(builder.Configuration.GetSection("GrpcSettings:CatalogUrl").Value));
 builder.Services.AddScoped<ProductGrpcService>();
 
 var app = builder.Build();
