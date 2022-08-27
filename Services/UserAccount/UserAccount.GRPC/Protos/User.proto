@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "UserAccount.GRPC.Protos";
+
+service UserProtoService {
+	rpc ExistUser (ExistUserRequest) returns (ExistUserResponse);	  
+}
+
+
+message ExistUserRequest {
+	string UserId = 1;
+}
+
+message ExistUserResponse {
+	bool Exist = 1;
+}

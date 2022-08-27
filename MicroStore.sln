@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.GRPC", "Services\Ca
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccount", "UserAccount", "{0A15AC01-D5B6-4115-B945-F91180C5F6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccount.API", "Services\UserAccount\UserAccount.API\UserAccount.API.csproj", "{A6E2A9E7-C4B9-4796-AA47-BE24D196D388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccount.API", "Services\UserAccount\UserAccount.API\UserAccount.API.csproj", "{A6E2A9E7-C4B9-4796-AA47-BE24D196D388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccount.GRPC", "Services\UserAccount\UserAccount.GRPC\UserAccount.GRPC.csproj", "{60486025-A0FC-4613-9780-01E8948A2E3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{A6E2A9E7-C4B9-4796-AA47-BE24D196D388}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E2A9E7-C4B9-4796-AA47-BE24D196D388}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E2A9E7-C4B9-4796-AA47-BE24D196D388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60486025-A0FC-4613-9780-01E8948A2E3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60486025-A0FC-4613-9780-01E8948A2E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60486025-A0FC-4613-9780-01E8948A2E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60486025-A0FC-4613-9780-01E8948A2E3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{E2B67D6F-6CD1-41DD-9001-A455A7621015} = {1C93D8E4-333F-4803-826C-237064FE0227}
 		{0A15AC01-D5B6-4115-B945-F91180C5F6B2} = {D85110A3-F063-479A-93E5-FBDA48E6F976}
 		{A6E2A9E7-C4B9-4796-AA47-BE24D196D388} = {0A15AC01-D5B6-4115-B945-F91180C5F6B2}
+		{60486025-A0FC-4613-9780-01E8948A2E3F} = {0A15AC01-D5B6-4115-B945-F91180C5F6B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6192FE8C-FB5A-47BE-9ACC-902BF5209F2D}

@@ -58,3 +58,10 @@ services:
       context: .
       dockerfile: Services/UserAccount/UserAccount.API/Dockerfile
 
+
+  useraccount.grpc:
+    image: ${DOCKER_REGISTRY-}useraccountgrpc
+    build:
+      context: .
+      dockerfile: Services/UserAccount/UserAccount.GRPC/Dockerfile
+
