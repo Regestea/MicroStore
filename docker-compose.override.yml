@@ -39,6 +39,17 @@ services:
     command: ["mongod", "--port", "27020"]
 
 
+  useraccountdb:
+    container_name: useraccountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+    restart: always
+    ports:
+        - "5432:5432"
+    volumes:
+      - ./postgres_useraccountdb_data:/var/lib/postgresql/data/
+
 
   catalog.api:
     container_name: catalog.api
@@ -51,6 +62,7 @@ services:
       - "8000:80"
 
   catalogbrand.api:
+    container_name: catalogbrand.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogbranddb:27018"
@@ -60,6 +72,7 @@ services:
       - "8001:80"
 
   catalogcategory.api:
+    container_name: catalogcategory.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogcategorydb:27019"
@@ -69,6 +82,7 @@ services:
       - "8002:80"
 
   catalogcomment.api:
+    container_name: catalogcomment.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogcommentdb:27020"
@@ -80,6 +94,7 @@ services:
 
 
   catalog.grpc:
+    container_name: catalog.grpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
@@ -88,3 +103,14 @@ services:
     ports:
       - "8004:80"
      
+
+  useraccount.api:
+    container_name: useraccount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=User ID=admin;Password=admin1234;Server=useraccountdb;Port=5432;Database=useraccountdb;Integrated Security=true;Pooling=true;"
+    depends_on:
+      - useraccountdb
+    ports:
+      - "8005:80"
+

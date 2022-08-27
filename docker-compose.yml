@@ -14,6 +14,9 @@ services:
   catalogcommentdb:
     image: mongo
 
+  useraccountdb:
+    image: postgres
+
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -47,4 +50,11 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.GRPC/Dockerfile
+
+
+  useraccount.api:
+    image: ${DOCKER_REGISTRY-}useraccountapi
+    build:
+      context: .
+      dockerfile: Services/UserAccount/UserAccount.API/Dockerfile
 
