@@ -38,7 +38,7 @@ namespace CatalogComment.API.Repositories
 
             if (existProduct == false)
             {
-                return new Exception("productId doesn't found").ToString();
+                return new Exception("product doesn't found").ToString();
             }
 
             Comment comment = new Comment()
