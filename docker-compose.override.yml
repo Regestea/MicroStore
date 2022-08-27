@@ -87,6 +87,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogcommentdb:27020"
       - "GrpcSettings:CatalogUrl=http://catalog.grpc"
+      - "GrpcSettings:UserUrl=http://useraccount.grpc"
     depends_on:
       - catalogcommentdb
     ports:

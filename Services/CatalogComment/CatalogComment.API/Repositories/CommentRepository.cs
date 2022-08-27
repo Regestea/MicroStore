@@ -12,12 +12,14 @@ namespace CatalogComment.API.Repositories
     {
         private ICatalogCommentContext _catalogCommentContext;
         private ProductGrpcService _productGrpcService;
+        private UserGrpcService _userGrpcService;
 
-        public CommentRepository(ICatalogCommentContext catalogCommentContext, ProductGrpcService productGrpcService)
+        public CommentRepository(ICatalogCommentContext catalogCommentContext, ProductGrpcService productGrpcService, UserGrpcService userGrpcService)
         {
             _catalogCommentContext =
                 catalogCommentContext ?? throw new ArgumentNullException(nameof(catalogCommentContext));
             _productGrpcService = productGrpcService;
+            _userGrpcService = userGrpcService;
         }
 
 
@@ -32,7 +34,13 @@ namespace CatalogComment.API.Repositories
 
         public async Task<string> CreateCommentAsync(CreateCommentModel commentModel)
         {
-            //TODO : cheack userId exsist by grpc request
+            var existUser = await _userGrpcService.ExistUserAsync(commentModel.UserId);
+
+            if (existUser == false)
+            {
+                return new Exception("user doesn't found").ToString();
+            }
+
 
             var existProduct = await _productGrpcService.ExistProductAsync(commentModel.ProductId);
 
