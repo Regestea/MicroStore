@@ -17,6 +17,9 @@ services:
   useraccountdb:
     image: postgres
 
+  aws:
+    image: quay.io/minio/minio
+
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -64,4 +67,11 @@ services:
     build:
       context: .
       dockerfile: Services/UserAccount/UserAccount.GRPC/Dockerfile
+
+
+  aws.api:
+    image: ${DOCKER_REGISTRY-}awsapi
+    build:
+      context: .
+      dockerfile: Services/AWS/AWS.API/Dockerfile
 

@@ -367,3 +367,4 @@ FodyWeavers.xsd
 /mongo_catalogcommentdb_data
 /mongo_catalogdb_data
 /postgres_useraccountdb_data
+/aws_minio/data
