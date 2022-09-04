@@ -2,19 +2,6 @@ version: '3.4'
 
 services:
 
-  aws:
-    container_name: aws
-    restart: always
-    environment:
-      - "MINIO_ROOT_USER=miniouser"
-      - "MINIO_ROOT_PASSWORD=miniopassword"
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    volumes:
-      - ./aws_minio/data:/data
-    command: ["minio","server","/data","--console-address",":9001"]
-
   catalogdb:
     container_name: catalogdb
     restart: always

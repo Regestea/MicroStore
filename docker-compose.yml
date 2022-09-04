@@ -17,10 +17,6 @@ services:
   useraccountdb:
     image: postgres
 
-  aws:
-    image: quay.io/minio/minio
-
-
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
