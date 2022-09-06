@@ -17,17 +17,8 @@ namespace AWS.API.Controllers
             _fileRepository = fileRepository;
         }
 
-        [HttpPost("{productId}/ImageList")]
-        public async Task<IActionResult> UploadProductImages([FromForm] FilesUploadRequest filesUploadRequest, [FromRoute] Guid productId)
-        {
-            var response = await _fileRepository.UploadFiles(Buckets.Names.product, productId, filesUploadRequest.images, S3CannedACL.PublicRead);
 
-            //TODO:grpc request to catalog grpc service to add image files to product image  
-
-            return NoContent();
-        }
-
-        [HttpPost("{productId}/Image")]
+        [HttpPost("{productId}")]
         public async Task<IActionResult> UploadProductImage([FromForm] FileUploadRequest filesUploadRequest, [FromRoute] Guid productId)
         {
             var response = await _fileRepository.UploadFile(Buckets.Names.product, productId, filesUploadRequest.image, S3CannedACL.PublicRead);

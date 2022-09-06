@@ -2,9 +2,7 @@
 {
     public class UploadFileResponse
     {
-        public Guid objectOwnerId { get; set; }
-        public string BucketName { get; set; }
-        public Guid FileName { get; set; }
-        public string Format { get; set; }
+        public Guid ObjectOwnerId { get; set; }
+        public string FilePath { get; set; }
     }
 }
