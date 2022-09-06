@@ -1,5 +1,5 @@
-﻿using Catalog.GRPC.Protos;
-using Catalog.GRPC.Repositories.Interfaces;
+﻿using Catalog.Application.Common.Interfaces;
+using Catalog.GRPC.Protos;
 using Grpc.Core;
 
 namespace Catalog.GRPC.Services

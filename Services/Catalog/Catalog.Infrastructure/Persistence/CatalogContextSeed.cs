@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace Catalog.GRPC.Data;
+namespace Catalog.Infrastructure.Persistence;
 
 public class CatalogContextSeed
 {

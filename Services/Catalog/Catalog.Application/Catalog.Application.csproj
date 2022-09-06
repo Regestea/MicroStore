@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Models\" />
+    <Folder Include="Common\Security\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

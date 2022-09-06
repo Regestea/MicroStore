@@ -368,3 +368,4 @@ FodyWeavers.xsd
 /mongo_catalogdb_data
 /postgres_useraccountdb_data
 /aws_minio/data
+/.idea/.idea.MicroStore/.idea

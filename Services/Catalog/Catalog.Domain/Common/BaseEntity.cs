@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Catalog.API.Entities
+namespace Catalog.Domain.Common
 {
     public abstract class BaseEntity
     {

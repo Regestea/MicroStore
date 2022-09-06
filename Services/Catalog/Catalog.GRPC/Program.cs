@@ -1,8 +1,5 @@
-using Catalog.GRPC.Data;
-using Catalog.GRPC.Data.Interfaces;
-using Catalog.GRPC.Repositories;
-using Catalog.GRPC.Repositories.Interfaces;
 using Catalog.GRPC.Services;
+using Catalog.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
-builder.Services.AddSingleton<ICatalogContext, CatalogContext>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 

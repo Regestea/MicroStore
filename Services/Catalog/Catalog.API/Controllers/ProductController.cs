@@ -1,6 +1,6 @@
-﻿using Catalog.API.Data.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using Catalog.Application.Common.Interfaces;
 
 namespace Catalog.API.Controllers
 {
@@ -16,10 +16,11 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> gg()
+        public async Task<IActionResult> Catalogs([FromQuery][Range(1, int.MaxValue)] int currentPage, [FromQuery] string stortBy, [FromQuery][Range(5, 30)] int itemInPage = 10)
         {
-            var ss = await _catalogContext.Products.Find(p => true).ToListAsync();
-            return Ok(ss);
+
+
+            return NotFound();
         }
     }
 }
