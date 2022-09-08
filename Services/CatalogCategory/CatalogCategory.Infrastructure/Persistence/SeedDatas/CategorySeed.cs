@@ -1,6 +1,6 @@
-﻿using CatalogCategory.API.Entities;
+﻿using CatalogCategory.Domain.Entities;
 
-namespace CatalogCategory.API.Data.SeedDatas
+namespace CatalogCategory.Infrastructure.Persistence.SeedDatas
 {
     public class CategorySeed
     {

@@ -1,4 +1,4 @@
-﻿using CatalogCategory.API.Data.Interfaces;
+﻿using CatalogCategory.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 

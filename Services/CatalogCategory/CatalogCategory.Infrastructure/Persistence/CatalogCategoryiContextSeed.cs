@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace CatalogCategory.API.Data;
+namespace CatalogCategory.Infrastructure.Persistence;
 
 public class CatalogCategoryiContextSeed
 {

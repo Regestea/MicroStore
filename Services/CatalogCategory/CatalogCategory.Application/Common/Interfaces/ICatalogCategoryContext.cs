@@ -1,7 +1,7 @@
-﻿using CatalogCategory.API.Entities;
+﻿using CatalogCategory.Domain.Entities;
 using MongoDB.Driver;
 
-namespace CatalogCategory.API.Data.Interfaces
+namespace CatalogCategory.Application.Common.Interfaces
 {
     public interface ICatalogCategoryContext
     {

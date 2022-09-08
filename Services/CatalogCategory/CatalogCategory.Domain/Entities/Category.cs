@@ -1,6 +1,7 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using CatalogCategory.Domain.Common;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace CatalogCategory.API.Entities
+namespace CatalogCategory.Domain.Entities
 {
     public class Category : BaseEntity
     {
