@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Catalog.Application.Common.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using Catalog.Application.Common.Interfaces;
 
 namespace Catalog.API.Controllers
 {
