@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver;
 
-namespace CatalogBrand.API.Data;
+namespace CatalogBrand.Infrastructure.Persistence;
 
-public class CatalogBrandContextSeed
+public static class CatalogBrandContextSeed
 {
     public static void SeedData<T>(IMongoCollection<T> productCollection, List<T> seedData) where T : class
     {

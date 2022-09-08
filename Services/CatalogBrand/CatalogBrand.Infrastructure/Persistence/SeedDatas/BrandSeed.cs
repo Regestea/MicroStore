@@ -1,6 +1,6 @@
-﻿using CatalogBrand.API.Entities;
+﻿using CatalogBrand.Domain.Entities;
 
-namespace CatalogBrand.API.Data.SeedDatas
+namespace CatalogBrand.Infrastructure.Persistence.SeedDatas
 {
     public class BrandSeed
     {

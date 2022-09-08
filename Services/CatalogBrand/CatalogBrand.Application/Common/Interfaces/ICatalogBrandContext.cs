@@ -1,7 +1,7 @@
-﻿using CatalogBrand.API.Entities;
+﻿using CatalogBrand.Domain.Entities;
 using MongoDB.Driver;
 
-namespace CatalogBrand.API.Data.Interfaces
+namespace CatalogBrand.Application.Common.Interfaces
 {
     public interface ICatalogBrandContext
     {

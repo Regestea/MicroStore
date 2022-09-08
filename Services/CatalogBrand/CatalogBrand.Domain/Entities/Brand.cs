@@ -1,6 +1,7 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using CatalogBrand.Domain.Common;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace CatalogBrand.API.Entities
+namespace CatalogBrand.Domain.Entities
 {
     public class Brand : BaseEntity
     {

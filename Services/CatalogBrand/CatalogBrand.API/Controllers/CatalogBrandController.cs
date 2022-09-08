@@ -1,4 +1,4 @@
-﻿using CatalogBrand.API.Data.Interfaces;
+﻿using CatalogBrand.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
