@@ -2,7 +2,6 @@ using Amazon.S3;
 using AWS.API.AWS;
 using AWS.API.Repositories;
 using AWS.API.Repositories.Interfaces;
-using AWS.API.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
