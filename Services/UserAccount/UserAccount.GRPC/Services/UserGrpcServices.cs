@@ -1,8 +1,8 @@
 ﻿using Grpc.Core;
+using UserAccount.Application.Common.Interfaces;
 using UserAccount.GRPC.Protos;
-using UserAccount.GRPC.Repositories.Interfaces;
 
-namespace Catalog.GRPC.Services
+namespace UserAccount.GRPC.Services
 {
     public class UserGrpcServices : UserProtoService.UserProtoServiceBase
     {

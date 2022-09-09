@@ -1,8 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using UserAccount.API.Data;
-using UserAccount.API.Extensions;
-using UserAccount.API.Repositories;
-using UserAccount.API.Repositories.Interfaces;
+using UserAccount.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,20 +9,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddEntityFrameworkNpgsql().AddDbContext<UserAccountContext>(
-    o => o.UseNpgsql(builder.Configuration.GetSection("DatabaseSettings:ConnectionString").Value));
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
 //MigrateDatabase
-app.MigrateDatabase<UserAccountContext>((context, services) =>
-{
-    UserAccountContextSeed
-        .SeedAsync(context)
-        .Wait();
-});
+app.MigrateDatabaseServices();
+
+
 
 
 // Configure the HTTP request pipeline.

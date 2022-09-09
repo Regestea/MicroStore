@@ -21,6 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UserAccount.Application\UserAccount.Application.csproj" />
+    <ProjectReference Include="..\UserAccount.Infrastructure\UserAccount.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Protobuf Include="Protos\User.proto" GrpcServices="Server" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserAccount.API.Models.User;
-using UserAccount.API.Repositories.Interfaces;
+using UserAccount.Application.Common.Interfaces;
+using UserAccount.Application.Common.Models.User;
 
 namespace UserAccount.API.Controllers
 {

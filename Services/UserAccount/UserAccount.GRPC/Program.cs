@@ -1,17 +1,17 @@
-using Catalog.GRPC.Services;
-using Microsoft.EntityFrameworkCore;
-using UserAccount.GRPC.Data;
-using UserAccount.GRPC.Repositories.Interfaces;
+using UserAccount.GRPC.Services;
+using UserAccount.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddGrpc();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddEntityFrameworkNpgsql().AddDbContext<UserAccountContext>(
-    o => o.UseNpgsql(builder.Configuration.GetSection("DatabaseSettings:ConnectionString").Value));
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
+
+//MigrateDatabase
+app.MigrateDatabaseServices();
+
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<UserGrpcServices>();
