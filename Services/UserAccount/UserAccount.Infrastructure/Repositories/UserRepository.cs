@@ -20,6 +20,14 @@ namespace UserAccount.Infrastructure.Repositories
         {
             return await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
         }
+
+        public async Task<bool> IsEmailExist(string email)
+        {
+            bool exist = await _context.Users.AnyAsync(x => x.Email == email.Trim().ToLower());
+
+            return exist;
+        }
+
         public async Task<bool> IsUserExist(string userId)
         {
             Guid userGuid = Guid.Parse(userId);
@@ -30,8 +38,8 @@ namespace UserAccount.Infrastructure.Repositories
         {
             var user = new User()
             {
-                Name = userModel.Name,
-                Email = userModel.Email
+                Name = userModel.Name.Trim().ToLower(),
+                Email = userModel.Email.Trim().ToLower()
             };
 
             await _context.Users.AddAsync(user);

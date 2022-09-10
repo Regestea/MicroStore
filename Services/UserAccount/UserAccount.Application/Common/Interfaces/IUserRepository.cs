@@ -7,6 +7,8 @@ namespace UserAccount.Application.Common.Interfaces
     {
         Task<User?> GetUserAsync(Guid userId);
 
+        Task<bool> IsEmailExist(string email);
+
         Task<bool> IsUserExist(string userId);
 
         Task<Guid> CreateUserAsync(CreateUserModel userModel);
