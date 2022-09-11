@@ -1,6 +1,7 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
+using AWS.API.AWS;
 using AWS.API.DTOs.Responses;
 using AWS.API.Globals;
 using AWS.API.Repositories.Interfaces;
@@ -9,19 +10,20 @@ namespace AWS.API.Repositories
 {
     public class AWSFileRepository : IAWSFileRepository
     {
-        private AmazonS3Client _S3client;
+        private IAmazonS3ClientContext _amazonS3ClientContext;
 
-        public AWSFileRepository(AmazonS3Client s3Client)
+        public AWSFileRepository(IAmazonS3ClientContext amazonS3ClientContext)
         {
-            _S3client = s3Client;
+            _amazonS3ClientContext = amazonS3ClientContext;
         }
 
 
         public async Task<UploadFileResponse> UploadFile(Buckets.Names bucketCategory, Guid objectOwnerId, IFormFile file, S3CannedACL acl)
         {
+
             var response = new UploadFileResponse() { ObjectOwnerId = objectOwnerId };
 
-            using var fileTransferUtility = new TransferUtility(_S3client);
+            using var fileTransferUtility = new TransferUtility(_amazonS3ClientContext.S3);
 
             await using Stream fileStream = file.OpenReadStream();
 
@@ -51,7 +53,7 @@ namespace AWS.API.Repositories
                 BucketName = bucketCategory.ToString(),
                 Key = fileName.ToString()
             };
-            await _S3client.DeleteObjectAsync(req);
+            await _amazonS3ClientContext.S3.DeleteObjectAsync(req);
 
             var response = new DeleteFileResponse()
             {
