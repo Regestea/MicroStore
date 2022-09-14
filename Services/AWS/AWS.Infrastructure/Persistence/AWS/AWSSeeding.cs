@@ -2,7 +2,7 @@
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 
-namespace AWS.API.AWS
+namespace AWS.Infrastructure.Persistence.AWS
 {
 
     public static class AWSSeeding

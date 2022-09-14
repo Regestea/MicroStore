@@ -1,4 +1,4 @@
-﻿namespace AWS.API.Globals
+﻿namespace AWS.Application.Common.Globals
 {
     public class Buckets
     {

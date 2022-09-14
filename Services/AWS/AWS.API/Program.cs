@@ -1,19 +1,14 @@
-using AWS.API.AWS;
-using AWS.API.Repositories;
-using AWS.API.Repositories.Interfaces;
+using AWS.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var provider = builder.Services.BuildServiceProvider();
-var configuration = provider.GetService<IConfiguration>();
 
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IAWSFileRepository, AWSFileRepository>();
 
-builder.Services.AddSingleton<IAmazonS3ClientContext, AmazonS3ClientContext>();
 
 
 

@@ -1,4 +1,4 @@
-namespace AWS.API.AWS
+namespace AWS.Infrastructure.Persistence.AWS
 {
     public interface IAWSSettings
     {

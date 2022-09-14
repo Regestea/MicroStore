@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Requests\" />
+    <ProjectReference Include="..\AWS.Application\AWS.Application.csproj" />
+    <ProjectReference Include="..\AWS.Infrastructure\AWS.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

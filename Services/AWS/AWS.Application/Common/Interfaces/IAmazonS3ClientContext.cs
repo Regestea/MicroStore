@@ -1,6 +1,6 @@
 ﻿using Amazon.S3;
 
-namespace AWS.API.AWS
+namespace AWS.Application.Common.Interfaces
 {
     public interface IAmazonS3ClientContext
     {

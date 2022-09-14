@@ -1,12 +1,11 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
-using AWS.API.AWS;
-using AWS.API.DTOs.Responses;
-using AWS.API.Globals;
-using AWS.API.Repositories.Interfaces;
+using AWS.Application.Common.Globals;
+using AWS.Application.Common.Interfaces;
+using Microsoft.AspNetCore.Http;
 
-namespace AWS.API.Repositories
+namespace AWS.Infrastructure.Persistence.Repositories
 {
     public class AWSFileRepository : IAWSFileRepository
     {
@@ -18,10 +17,8 @@ namespace AWS.API.Repositories
         }
 
 
-        public async Task<UploadFileResponse> UploadFile(Buckets.Names bucketCategory, Guid objectOwnerId, IFormFile file, S3CannedACL acl)
+        public async Task<string> UploadFile(Buckets.Names bucketCategory, IFormFile file, S3CannedACL acl)
         {
-
-            var response = new UploadFileResponse() { ObjectOwnerId = objectOwnerId };
 
             using var fileTransferUtility = new TransferUtility(_amazonS3ClientContext.S3);
 
@@ -40,13 +37,13 @@ namespace AWS.API.Repositories
 
             await fileTransferUtility.UploadAsync(req);
 
-            response.FilePath = @"/" + bucketCategory + "/" + key;
+            string filePath = @"/" + bucketCategory + "/" + key;
 
 
-            return response;
+            return filePath;
         }
 
-        public async Task<DeleteFileResponse> DeleteFile(Buckets.Names bucketCategory, Guid objectOwnerId, Guid fileName)
+        public async Task DeleteFile(Buckets.Names bucketCategory, Guid fileName)
         {
             var req = new DeleteObjectRequest()
             {
@@ -54,14 +51,6 @@ namespace AWS.API.Repositories
                 Key = fileName.ToString()
             };
             await _amazonS3ClientContext.S3.DeleteObjectAsync(req);
-
-            var response = new DeleteFileResponse()
-            {
-                objectOwnerId = objectOwnerId,
-                FilePath = @"/" + bucketCategory + "/" + fileName
-            };
-
-            return response;
         }
 
     }

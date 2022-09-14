@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
-namespace AWS.API.Filters
+namespace AWS.Application.Common.Filters
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class FileSizeKBAttribute : ValidationAttribute

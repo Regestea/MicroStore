@@ -1,7 +1,8 @@
 ﻿using Amazon.S3;
-using AWS.API.Globals;
-using AWS.API.Models;
-using AWS.API.Repositories.Interfaces;
+using AWS.Application.Common.Globals;
+using AWS.Application.Common.Interfaces;
+using AWS.Application.DTOs.Requests;
+using AWS.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AWS.API.Controllers
@@ -18,25 +19,28 @@ namespace AWS.API.Controllers
         }
 
 
-        [HttpPost("{productId}")]
-        public async Task<IActionResult> UploadProductImage([FromForm] FileUploadRequest filesUploadRequest, [FromRoute] Guid productId)
+        [HttpPost("{objectOwnerId}")]
+        public async Task<IActionResult> UploadProductImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string objectOwnerId)
         {
-            var response = await _fileRepository.UploadFile(Buckets.Names.product, productId, filesUploadRequest.image, S3CannedACL.PublicRead);
+            bool isObjectOwnerExist = true;//request to grpc service
+
+            if (!isObjectOwnerExist)
+            {
+                return BadRequest("Owner doesn't exist ");
+            }
+
+            var filePath = await _fileRepository.UploadFile(Buckets.Names.product, filesUploadModel.image, S3CannedACL.PublicRead);
+
+            var addFilePathRequest = new AddFilePathRequest()
+            {
+                FilePath = filePath,
+                ObjectOwnerId = objectOwnerId
+            };
 
             //TODO:grpc request to catalog grpc service to add image files to product image  
 
             return NoContent();
         }
 
-
-        [HttpDelete("{productId}/{imageName}")]
-        public async Task<IActionResult> DeleteProductImage([FromRoute] Guid productId, [FromRoute] Guid imageName)
-        {
-            var response = await _fileRepository.DeleteFile(Buckets.Names.product, productId, imageName);
-
-            //TODO:grpc request to catalog grpc service to delete image files to product image  
-
-            return NoContent();
-        }
     }
 }

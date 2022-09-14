@@ -1,6 +1,8 @@
 ﻿using Amazon.S3;
+using AWS.Application.Common.Interfaces;
+using Microsoft.Extensions.Configuration;
 
-namespace AWS.API.AWS
+namespace AWS.Infrastructure.Persistence.AWS
 {
     public class AmazonS3ClientContext : IAmazonS3ClientContext
     {
@@ -8,6 +10,7 @@ namespace AWS.API.AWS
         public AmazonS3ClientContext(IConfiguration configuration)
         {
             var awsConfig = configuration.GetSection(nameof(AWSSettings));
+
             var awsSettings = awsConfig.Get<AWSSettings>();
             var s3Config = new AmazonS3Config
             {

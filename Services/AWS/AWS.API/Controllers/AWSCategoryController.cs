@@ -1,7 +1,8 @@
 ﻿using Amazon.S3;
-using AWS.API.Globals;
-using AWS.API.Models;
-using AWS.API.Repositories.Interfaces;
+using AWS.Application.Common.Globals;
+using AWS.Application.Common.Interfaces;
+using AWS.Application.DTOs.Requests;
+using AWS.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AWS.API.Controllers
@@ -17,25 +18,28 @@ namespace AWS.API.Controllers
             _fileRepository = fileRepository;
         }
 
-        [HttpPost("{categoryId}")]
-        public async Task<IActionResult> UploadCategoryImage([FromForm] FileUploadRequest filesUploadRequest, [FromRoute] Guid categoryId)
+        [HttpPost("{objectOwnerId}")]
+        public async Task<IActionResult> UploadCategoryImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string objectOwnerId)
         {
-            var response = await _fileRepository.UploadFile(Buckets.Names.category, categoryId, filesUploadRequest.image, S3CannedACL.PublicRead);
+            bool isObjectOwnerExist = true;//request to grpc service
+
+            if (!isObjectOwnerExist)
+            {
+                return BadRequest("Owner doesn't exist ");
+            }
+
+            var filePath = await _fileRepository.UploadFile(Buckets.Names.category, filesUploadModel.image, S3CannedACL.PublicRead);
+
+            var addFilePathRequest = new AddFilePathRequest()
+            {
+                FilePath = filePath,
+                ObjectOwnerId = objectOwnerId
+            };
 
             //TODO:grpc request to catalog grpc service to add image files to Category image  
 
             return NoContent();
         }
 
-
-        [HttpDelete("{categoryId}/{imageName}")]
-        public async Task<IActionResult> DeleteCategoryImage([FromRoute] Guid categoryId, [FromRoute] Guid imageName)
-        {
-            var response = await _fileRepository.DeleteFile(Buckets.Names.category, categoryId, imageName);
-
-            //TODO:grpc request to catalog grpc service to delete image files to Category image  
-
-            return NoContent();
-        }
     }
 }
