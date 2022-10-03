@@ -3,7 +3,9 @@ syntax = "proto3";
 option csharp_namespace = "UserAccount.GRPC.Protos";
 
 service UserProtoService {
-	rpc ExistUser (ExistUserRequest) returns (ExistUserResponse);	  
+	rpc ExistUser (ExistUserRequest) returns (ExistUserResponse);
+	rpc AddImage (AddImageRequest) returns (AddImageResponse);  
+	rpc EditImage (EditImageRequest) returns (EditImageResponse);  
 }
 
 
@@ -13,4 +15,24 @@ message ExistUserRequest {
 
 message ExistUserResponse {
 	bool Exist = 1;
+}
+
+//AddImage messages
+message AddImageRequest {
+	string UserId = 1;
+	string FilePath= 2;
+}
+
+message AddImageResponse {
+	bool IsAdded = 1;
+}
+
+//EditImage message
+message EditImageRequest {
+	string UserId = 1;
+	string NewFilePath= 2;
+}
+
+message EditImageResponse {
+	bool IsEdited = 1;
 }

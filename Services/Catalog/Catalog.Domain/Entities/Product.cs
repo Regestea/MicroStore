@@ -33,25 +33,4 @@ namespace Catalog.Domain.Entities
 
         public List<ProductPicture> Pictures { get; set; }
     }
-
-    public class ProductTechnicalDetail
-    {
-        [BsonRequired]
-        public string Title { get; set; }
-
-        [BsonRequired]
-        public string Description { get; set; }
-    }
-
-    public class ProductPicture
-    {
-        [BsonRequired]
-        public string ImagePath { get; set; }
-
-        [BsonIgnore]
-        public string ImageUrl
-        {
-            get { return Globals.Url.AWSServerAddress + ImagePath; }
-        }
-    }
 }

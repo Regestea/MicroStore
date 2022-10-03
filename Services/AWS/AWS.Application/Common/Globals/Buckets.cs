@@ -4,9 +4,9 @@
     {
         public enum Names
         {
-            profile,
-            product,
-            category
+            microstoreprofile,
+            microstoreproduct,
+            microstorecategory
         }
     }
 }

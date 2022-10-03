@@ -5,6 +5,8 @@ option csharp_namespace = "Catalog.GRPC.Protos";
 service ProductProtoService {
 
 	rpc ExistProduct (ExistProductRequest) returns (ExistProductResponse);	  
+	rpc AddImage (AddImageRequest) returns (AddImageResponse);  
+	rpc EditImage (EditImageRequest) returns (EditImageResponse);  
 }
 
 
@@ -14,4 +16,25 @@ message ExistProductRequest {
 
 message ExistProductResponse {
 	bool Exist = 1;
+}
+
+//AddImage messages
+message AddImageRequest {
+	string productId = 1;
+	string FilePath= 2;
+}
+
+message AddImageResponse {
+	bool IsAdded = 1;
+}
+
+//EditImage message
+message EditImageRequest {
+	string productId = 1;
+	string OldFilePath= 2;
+	string NewFilePath= 3;
+}
+
+message EditImageResponse {
+	bool IsEdited = 1;
 }

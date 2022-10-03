@@ -1,7 +1,7 @@
 ﻿using Amazon.S3;
+using AWS.API.GrpcServices.Catalog;
 using AWS.Application.Common.Globals;
 using AWS.Application.Common.Interfaces;
-using AWS.Application.DTOs.Requests;
 using AWS.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,32 +12,35 @@ namespace AWS.API.Controllers
     public class AWSProductController : ControllerBase
     {
         private IAWSFileRepository _fileRepository;
+        private ProductGrpcService _productGrpcService;
 
-        public AWSProductController(IAWSFileRepository fileRepository)
+        public AWSProductController(IAWSFileRepository fileRepository, ProductGrpcService productGrpcService)
         {
             _fileRepository = fileRepository;
+            _productGrpcService = productGrpcService;
         }
 
 
-        [HttpPost("{objectOwnerId}")]
-        public async Task<IActionResult> UploadProductImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string objectOwnerId)
+        [HttpPost("{productId}")]
+        public async Task<IActionResult> UploadProductImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string productId)
         {
-            bool isObjectOwnerExist = true;//request to grpc service
+
+            bool isObjectOwnerExist = await _productGrpcService.ExistProductAsync(productId);
 
             if (!isObjectOwnerExist)
             {
                 return BadRequest("Owner doesn't exist ");
             }
 
-            var filePath = await _fileRepository.UploadFile(Buckets.Names.product, filesUploadModel.image, S3CannedACL.PublicRead);
+            var filePath = await _fileRepository.UploadFile(Buckets.Names.microstoreproduct, filesUploadModel.image, S3CannedACL.PublicRead);
 
-            var addFilePathRequest = new AddFilePathRequest()
+
+            bool isAdded = await _productGrpcService.AddProductImageAsync(productId, filePath);
+
+            if (!isAdded)
             {
-                FilePath = filePath,
-                ObjectOwnerId = objectOwnerId
-            };
-
-            //TODO:grpc request to catalog grpc service to add image files to product image  
+                return BadRequest("something wrong image doesn't added");
+            }
 
             return NoContent();
         }

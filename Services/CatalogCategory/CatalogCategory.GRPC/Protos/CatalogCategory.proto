@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "CatalogCategory.GRPC.Protos";
+
+service CatalogCategoryProtoService {
+
+	rpc ExistCatalogCategory (ExistCatalogCategoryRequest) returns (ExistCatalogCategoryResponse);	  
+	rpc AddImageToCatalogCategory (AddImageToCatalogCategoryRequest) returns (AddImageToCatalogCategoryResponse);	  
+}
+
+//ExistCatalogCategory
+message ExistCatalogCategoryRequest {
+	string CatalogCategoryId = 1;
+}
+
+message ExistCatalogCategoryResponse {
+	bool Exist = 1;
+}
+
+//AddImageToCatalogCategory
+message AddImageToCatalogCategoryRequest {
+	string CatalogCategoryId = 1;
+	string ImagePath = 2;
+}
+
+message AddImageToCatalogCategoryResponse {
+	bool IsAdded = 1;
+}

@@ -129,6 +129,19 @@ services:
   aws.api:
     container_name: aws.api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - "ASPNETCORE_ENVIRONMENT=Development"
+      - "GrpcSettings:CatalogCategoryUrl=http://catalogcategory.grpc"
+      - "GrpcSettings:UserAccountUrl=http://useraccount.grpc"
+      - "GrpcSettings:CatalogUrl=http://catalog.grpc"
     ports:
       - "8007:80"
+
+  catalogcategory.grpc:
+    container_name: catalogcategory.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogcategorydb:27019"
+    depends_on:
+      - catalogcategorydb
+    ports:
+      - "8008:80"

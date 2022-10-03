@@ -22,7 +22,7 @@ namespace UserAccount.API.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("UserAccount.API.Entities.Address", b =>
+            modelBuilder.Entity("UserAccount.Domain.Entities.Address", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,10 +33,16 @@ namespace UserAccount.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<DateTimeOffset?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("LoctionAddress")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<DateTimeOffset?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -49,16 +55,26 @@ namespace UserAccount.API.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("UserAccount.API.Entities.User", b =>
+            modelBuilder.Entity("UserAccount.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTimeOffset?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -70,18 +86,18 @@ namespace UserAccount.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("UserAccount.API.Entities.Address", b =>
+            modelBuilder.Entity("UserAccount.Domain.Entities.Address", b =>
                 {
-                    b.HasOne("UserAccount.API.Entities.User", "User")
+                    b.HasOne("UserAccount.Domain.Entities.User", "User")
                         .WithOne("Address")
-                        .HasForeignKey("UserAccount.API.Entities.Address", "UserId")
+                        .HasForeignKey("UserAccount.Domain.Entities.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("UserAccount.API.Entities.User", b =>
+            modelBuilder.Entity("UserAccount.Domain.Entities.User", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();

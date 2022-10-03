@@ -11,26 +11,27 @@ namespace Catalog.Infrastructure.Persistence.SeedDatas
                 new Product()
                 {
                     Id = "62eff26faa2a7d20bc66fb8e",
-                    CategoryName = "hello",
+                    CategoryName = "Laptop",
+                    CreatedDate = DateTimeOffset.Now.AddYears(1),
                     Title ="gggd",
+                    Price = 221,
                     TechnicalDetail = new List<ProductTechnicalDetail>(){new ProductTechnicalDetail()
                     {
                         Description = "dis good",
                         Title = "titledisgood"
-                    }},
-                    Pictures = new List<ProductPicture>()
+                    }}
                 },
                 new Product()
                 {
                     Id = "62eff28e6d75d45a6581e289",
-                    CategoryName = "hello2",
+                    CategoryName = "Laptop",
                     Title ="gggd2",
+                    Price = 342,
                     TechnicalDetail = new List<ProductTechnicalDetail>(){new ProductTechnicalDetail()
                     {
                         Description = "dis good2",
                         Title = "titledisgood2"
-                    }},
-                    Pictures = new List<ProductPicture>()
+                    }}
                 }
             };
         }

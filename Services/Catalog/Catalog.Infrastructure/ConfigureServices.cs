@@ -12,6 +12,8 @@ namespace Catalog.Infrastructure
         {
             services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
             return services;
         }

@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Globals
+﻿namespace Catalog.Application.Common.Globals
 {
     public class Url
     {

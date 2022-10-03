@@ -1,7 +1,7 @@
 ﻿using Amazon.S3;
+using AWS.API.GrpcServices.CatalogCategory;
 using AWS.Application.Common.Globals;
 using AWS.Application.Common.Interfaces;
-using AWS.Application.DTOs.Requests;
 using AWS.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,31 +12,29 @@ namespace AWS.API.Controllers
     public class AWSCategoryController : ControllerBase
     {
         private IAWSFileRepository _fileRepository;
+        private CatalogCategoryGrpcService _catalogCategoryGrpcService;
 
-        public AWSCategoryController(IAWSFileRepository fileRepository)
+        public AWSCategoryController(IAWSFileRepository fileRepository, CatalogCategoryGrpcService catalogCategoryGrpcService)
         {
             _fileRepository = fileRepository;
+            _catalogCategoryGrpcService = catalogCategoryGrpcService;
         }
 
-        [HttpPost("{objectOwnerId}")]
-        public async Task<IActionResult> UploadCategoryImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string objectOwnerId)
+        [HttpPost("{catalogCategoryId}")]
+        public async Task<IActionResult> UploadCategoryImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string catalogCategoryId)
         {
-            bool isObjectOwnerExist = true;//request to grpc service
+
+            bool isObjectOwnerExist = await _catalogCategoryGrpcService.ExistCatalogCategoryAsync(catalogCategoryId);
 
             if (!isObjectOwnerExist)
             {
                 return BadRequest("Owner doesn't exist ");
             }
 
-            var filePath = await _fileRepository.UploadFile(Buckets.Names.category, filesUploadModel.image, S3CannedACL.PublicRead);
+            var filePath = await _fileRepository.UploadFile(Buckets.Names.microstorecategory, filesUploadModel.image, S3CannedACL.PublicRead);
 
-            var addFilePathRequest = new AddFilePathRequest()
-            {
-                FilePath = filePath,
-                ObjectOwnerId = objectOwnerId
-            };
 
-            //TODO:grpc request to catalog grpc service to add image files to Category image  
+            await _catalogCategoryGrpcService.AddImagePathToCatalogCategoryAsync(catalogCategoryId, filePath);
 
             return NoContent();
         }

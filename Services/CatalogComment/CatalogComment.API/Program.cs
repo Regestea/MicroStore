@@ -4,11 +4,18 @@ using CatalogComment.API.Data.Interfaces;
 using CatalogComment.API.GrpcServices;
 using CatalogComment.API.Repositories;
 using CatalogComment.API.Repositories.Interfaces;
+using Newtonsoft.Json.Converters;
 using UserAccount.GRPC.Protos;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(jsonOptions =>
+{
+    jsonOptions.SerializerSettings.Converters.Add(new StringEnumConverter());
+});
+
+builder.Services.AddSwaggerGenNewtonsoftSupport();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

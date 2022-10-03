@@ -71,3 +71,10 @@ services:
       context: .
       dockerfile: Services/AWS/AWS.API/Dockerfile
 
+
+  catalogcategory.grpc:
+    image: ${DOCKER_REGISTRY-}catalogcategorygrpc
+    build:
+      context: .
+      dockerfile: Services/CatalogCategory/CatalogCategory.GRPC/Dockerfile
+

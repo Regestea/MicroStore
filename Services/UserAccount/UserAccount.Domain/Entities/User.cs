@@ -14,6 +14,8 @@ namespace UserAccount.Domain.Entities
         [MaxLength(50)]
         public string Email { get; set; }
 
+        public string Image { get; set; }
+
         public Address Address { get; set; }
     }
 }

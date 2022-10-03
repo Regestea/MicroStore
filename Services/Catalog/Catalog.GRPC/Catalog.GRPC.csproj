@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <None Remove="Protos\Product.proto" />
-    <None Remove="Protos\ProductImage.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\Product.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\ProductImage.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

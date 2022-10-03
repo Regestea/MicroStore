@@ -28,6 +28,36 @@ namespace UserAccount.Infrastructure.Repositories
             return exist;
         }
 
+        public async Task<bool> AddUserImage(string userId, string imagePath)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
+
+            if (user == null)
+            {
+                return false;
+            }
+            user.Image = imagePath;
+
+            _context.Users.Update(user);
+
+            var result = await _context.SaveChangesAsync();
+
+            return (result >= 1);
+        }
+
+        public async Task<bool> EditUserImage(string userId, string newImagePath)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
+
+            user.Image = newImagePath;
+
+            _context.Users.Update(user);
+
+            var result = await _context.SaveChangesAsync();
+
+            return (result >= 1);
+        }
+
         public async Task<bool> IsUserExist(string userId)
         {
             Guid userGuid = Guid.Parse(userId);

@@ -7,5 +7,7 @@ namespace CatalogCategory.Domain.Entities
     {
         [BsonRequired]
         public string CategoryName { get; set; }
+
+        public string Image { get; set; }
     }
 }
