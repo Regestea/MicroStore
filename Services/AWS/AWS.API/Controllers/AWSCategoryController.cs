@@ -21,7 +21,7 @@ namespace AWS.API.Controllers
         }
 
         [HttpPost("{catalogCategoryId}")]
-        public async Task<IActionResult> UploadCategoryImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string catalogCategoryId)
+        public async Task<IActionResult> ChangeCategoryImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string catalogCategoryId)
         {
 
             bool isObjectOwnerExist = await _catalogCategoryGrpcService.ExistCatalogCategoryAsync(catalogCategoryId);
@@ -34,7 +34,7 @@ namespace AWS.API.Controllers
             var filePath = await _fileRepository.UploadFile(Buckets.Names.microstorecategory, filesUploadModel.image, S3CannedACL.PublicRead);
 
 
-            await _catalogCategoryGrpcService.AddImagePathToCatalogCategoryAsync(catalogCategoryId, filePath);
+            await _catalogCategoryGrpcService.ChangeCatalogCategoryImagePathAsync(catalogCategoryId, filePath);
 
             return NoContent();
         }

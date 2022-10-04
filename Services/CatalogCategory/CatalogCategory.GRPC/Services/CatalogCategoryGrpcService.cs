@@ -20,11 +20,11 @@ namespace CatalogCategory.GRPC.Services
             return new ExistCatalogCategoryResponse() { Exist = existCatalogCategory };
         }
 
-        public override async Task<AddImageToCatalogCategoryResponse> AddImageToCatalogCategory(AddImageToCatalogCategoryRequest request, ServerCallContext context)
+        public override async Task<ChangeCatalogCategoryImagePathResponse> ChangeCatalogCategoryImagePath(ChangeCatalogCategoryImagePathRequest request, ServerCallContext context)
         {
-            var isSucceeded = await _catalogCategoryRepository.AddImagePath(request.CatalogCategoryId, request.ImagePath);
+            var isSucceeded = await _catalogCategoryRepository.ChangeCatalogCategoryImagePath(request.CatalogCategoryId, request.ImagePath);
 
-            return new AddImageToCatalogCategoryResponse() { IsAdded = isSucceeded };
+            return new ChangeCatalogCategoryImagePathResponse() { IsAdded = isSucceeded };
         }
     }
 }

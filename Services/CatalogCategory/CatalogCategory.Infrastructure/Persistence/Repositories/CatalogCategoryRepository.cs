@@ -19,7 +19,7 @@ namespace CatalogCategory.Infrastructure.Persistence.Repositories
             return await _catalogCategoryContext.Categories.Find(x => x.Id == catalogCategoryId).AnyAsync();
         }
 
-        public async Task<bool> AddImagePath(string catalogCategoryId, string imagePath)
+        public async Task<bool> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath)
         {
             var filter = Builders<Category>.Filter.Eq(s => s.Id, catalogCategoryId);
 
