@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UserAccount.Infrastructure.Persistence;
@@ -11,9 +12,10 @@ using UserAccount.Infrastructure.Persistence;
 namespace UserAccount.API.Migrations
 {
     [DbContext(typeof(UserAccountContext))]
-    partial class UserAccountContextModelSnapshot : ModelSnapshot
+    [Migration("20221004141326_NullAbleProfileImage")]
+    partial class NullAbleProfileImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
