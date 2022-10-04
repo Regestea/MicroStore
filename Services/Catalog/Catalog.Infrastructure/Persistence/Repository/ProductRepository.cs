@@ -91,20 +91,24 @@ namespace Catalog.Infrastructure.Persistence.Repository
 
         public async Task<bool> EditProductImage(string productId, string oldImagePath, string newImagePath)
         {
-            var product = await _catalogContext.Products.Find(x => x.Id == productId).SingleOrDefaultAsync();
 
-            if (product == null) return false;
+            var pictures = await _catalogContext.Products.Find(x => x.Id == productId).Project(p => p.Pictures).SingleOrDefaultAsync();
 
+            if (pictures == null) return false;
 
-            int oldImageIndex = product.Pictures.IndexOf(new ProductPicture() { ImagePath = oldImagePath });
+            var oldImageIndex = pictures.FindIndex(x => x.ImagePath == oldImagePath);
 
             if (oldImageIndex == -1) return false;
 
-            product.Pictures.RemoveAt(oldImageIndex);
+            pictures.RemoveAt(oldImageIndex);
 
-            product.Pictures.Insert(oldImageIndex, new ProductPicture() { ImagePath = newImagePath });
+            pictures.Insert(oldImageIndex, new ProductPicture() { ImagePath = newImagePath });
 
-            return true;
+            var update = Builders<Product>.Update.Set(x => x.Pictures, pictures);
+
+            var updateResult = await _catalogContext.Products.UpdateOneAsync(x => x.Id == productId, update);
+
+            return (updateResult.IsModifiedCountAvailable);
         }
 
 
