@@ -22,7 +22,7 @@ namespace AWS.API.Controllers
 
 
         [HttpPost("{userId}")]
-        public async Task<IActionResult> UploadProfileImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string userId)
+        public async Task<IActionResult> ChangeProfileImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] string userId)
         {
             bool isObjectOwnerExist = await _userAccountGrpcService.ExistUserAccountAsync(userId);
 
@@ -33,7 +33,7 @@ namespace AWS.API.Controllers
 
             var filePath = await _fileRepository.UploadFile(Buckets.Names.microstoreprofile, filesUploadModel.image, S3CannedACL.PublicRead);
 
-            await _userAccountGrpcService.AddImageToUserAccountAsync(userId, filePath);
+            await _userAccountGrpcService.ChangeProfileImageAsync(userId, filePath);
 
             return NoContent();
         }

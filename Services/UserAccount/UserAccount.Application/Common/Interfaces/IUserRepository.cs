@@ -7,13 +7,11 @@ namespace UserAccount.Application.Common.Interfaces
     {
         Task<User?> GetUserAsync(Guid userId);
 
-        Task<bool> IsEmailExist(string email);
+        Task<bool> IsEmailExistAsync(string email);
 
-        Task<bool> AddUserImage(string userId, string imagePath);
+        Task<bool> ChangeProfileImageAsync(string userId, string imagePath);
 
-        Task<bool> EditUserImage(string userId, string newImagePath);
-
-        Task<bool> IsUserExist(string userId);
+        Task<bool> IsUserExistAsync(string userId);
 
         Task<Guid> CreateUserAsync(CreateUserModel userModel);
 

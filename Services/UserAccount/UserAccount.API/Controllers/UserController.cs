@@ -30,7 +30,7 @@ namespace UserAccount.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserModel createUserModel)
         {
-            var isEmailExist = await _userRepository.IsEmailExist(createUserModel.Email);
+            var isEmailExist = await _userRepository.IsEmailExistAsync(createUserModel.Email);
 
             if (isEmailExist)
             {

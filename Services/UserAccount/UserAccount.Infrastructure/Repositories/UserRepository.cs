@@ -21,14 +21,14 @@ namespace UserAccount.Infrastructure.Repositories
             return await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
         }
 
-        public async Task<bool> IsEmailExist(string email)
+        public async Task<bool> IsEmailExistAsync(string email)
         {
             bool exist = await _context.Users.AnyAsync(x => x.Email == email.Trim().ToLower());
 
             return exist;
         }
 
-        public async Task<bool> AddUserImage(string userId, string imagePath)
+        public async Task<bool> ChangeProfileImageAsync(string userId, string imagePath)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
 
@@ -45,20 +45,7 @@ namespace UserAccount.Infrastructure.Repositories
             return (result >= 1);
         }
 
-        public async Task<bool> EditUserImage(string userId, string newImagePath)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
-
-            user.Image = newImagePath;
-
-            _context.Users.Update(user);
-
-            var result = await _context.SaveChangesAsync();
-
-            return (result >= 1);
-        }
-
-        public async Task<bool> IsUserExist(string userId)
+        public async Task<bool> IsUserExistAsync(string userId)
         {
             Guid userGuid = Guid.Parse(userId);
             return await _context.Users.AnyAsync(x => x.Id == userGuid);

@@ -15,21 +15,15 @@ namespace UserAccount.GRPC.Services
 
         public override async Task<ExistUserResponse> ExistUser(ExistUserRequest request, ServerCallContext context)
         {
-            return new ExistUserResponse() { Exist = await _UserRepository.IsUserExist(request.UserId) };
+            return new ExistUserResponse() { Exist = await _UserRepository.IsUserExistAsync(request.UserId) };
         }
 
-        public override async Task<AddImageResponse> AddImage(AddImageRequest request, ServerCallContext context)
+        public override async Task<ChangeProfileImageResponse> ChangeProfileImage(ChangeProfileImageRequest request, ServerCallContext context)
         {
-            bool isAdded = await _UserRepository.AddUserImage(request.UserId, request.FilePath);
+            bool isAdded = await _UserRepository.ChangeProfileImageAsync(request.UserId, request.FilePath);
 
-            return new AddImageResponse() { IsAdded = isAdded };
+            return new ChangeProfileImageResponse() { IsAdded = isAdded };
         }
 
-        public override async Task<EditImageResponse> EditImage(EditImageRequest request, ServerCallContext context)
-        {
-            bool isEdited = await _UserRepository.EditUserImage(request.UserId, request.NewFilePath);
-
-            return new EditImageResponse() { IsEdited = isEdited };
-        }
     }
 }
