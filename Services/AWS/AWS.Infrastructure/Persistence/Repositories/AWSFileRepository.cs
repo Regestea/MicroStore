@@ -43,7 +43,7 @@ namespace AWS.Infrastructure.Persistence.Repositories
             return filePath;
         }
 
-        public async Task DeleteFile(Buckets.Names bucketCategory, Guid fileName)
+        public async Task DeleteFile(string bucketCategory, string fileName)
         {
             var req = new DeleteObjectRequest()
             {

@@ -4,6 +4,6 @@
     {
         Task<bool> ExistCatalogCategory(string catalogCategoryId);
 
-        Task<bool> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath);
+        Task<(bool, string)> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath);
     }
 }

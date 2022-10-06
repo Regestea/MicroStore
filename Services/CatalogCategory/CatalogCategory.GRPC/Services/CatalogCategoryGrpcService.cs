@@ -22,9 +22,9 @@ namespace CatalogCategory.GRPC.Services
 
         public override async Task<ChangeCatalogCategoryImagePathResponse> ChangeCatalogCategoryImagePath(ChangeCatalogCategoryImagePathRequest request, ServerCallContext context)
         {
-            var isSucceeded = await _catalogCategoryRepository.ChangeCatalogCategoryImagePath(request.CatalogCategoryId, request.ImagePath);
+            var result = await _catalogCategoryRepository.ChangeCatalogCategoryImagePath(request.CatalogCategoryId, request.ImagePath);
 
-            return new ChangeCatalogCategoryImagePathResponse() { IsAdded = isSucceeded };
+            return new ChangeCatalogCategoryImagePathResponse() { IsAdded = result.Item1, OldImagePath = result.Item2 };
         }
     }
 }

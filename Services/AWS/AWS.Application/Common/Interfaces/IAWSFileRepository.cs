@@ -7,6 +7,6 @@ namespace AWS.Application.Common.Interfaces
     public interface IAWSFileRepository
     {
         Task<string> UploadFile(Buckets.Names bucketCategory, IFormFile file, S3CannedACL acl);
-        Task DeleteFile(Buckets.Names bucketCategory, Guid fileName);
+        Task DeleteFile(string bucketCategory, string fileName);
     }
 }

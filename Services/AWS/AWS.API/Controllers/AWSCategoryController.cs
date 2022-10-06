@@ -34,9 +34,19 @@ namespace AWS.API.Controllers
             var filePath = await _fileRepository.UploadFile(Buckets.Names.microstorecategory, filesUploadModel.image, S3CannedACL.PublicRead);
 
 
-            await _catalogCategoryGrpcService.ChangeCatalogCategoryImagePathAsync(catalogCategoryId, filePath);
+            var response = await _catalogCategoryGrpcService.ChangeCatalogCategoryImagePathAsync(catalogCategoryId, filePath);
 
-            return NoContent();
+            if (response.IsAdded)
+            {
+                if (!string.IsNullOrEmpty(response.OldImagePath))
+                {
+                    var oldFilePath = response.OldImagePath.Split("/");
+                    await _fileRepository.DeleteFile(oldFilePath[1], oldFilePath[2]);
+                }
+                return NoContent();
+            }
+
+            return BadRequest("Internal error please try again");
         }
 
     }

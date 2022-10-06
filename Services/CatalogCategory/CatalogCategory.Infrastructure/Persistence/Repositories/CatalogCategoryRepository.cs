@@ -19,15 +19,20 @@ namespace CatalogCategory.Infrastructure.Persistence.Repositories
             return await _catalogCategoryContext.Categories.Find(x => x.Id == catalogCategoryId).AnyAsync();
         }
 
-        public async Task<bool> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath)
+        public async Task<(bool, string)> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath)
         {
+            var oldImagePath = await _catalogCategoryContext.Categories
+                .Find(x => x.Id == catalogCategoryId)
+                .Project(x => x.Image)
+                .SingleOrDefaultAsync();
+
             var filter = Builders<Category>.Filter.Eq(s => s.Id, catalogCategoryId);
 
             var update = Builders<Category>.Update.Set(s => s.Image, imagePath);
 
             var result = await _catalogCategoryContext.Categories.UpdateOneAsync(filter, update);
 
-            return result.IsModifiedCountAvailable;
+            return (result.IsModifiedCountAvailable, oldImagePath);
         }
     }
 }

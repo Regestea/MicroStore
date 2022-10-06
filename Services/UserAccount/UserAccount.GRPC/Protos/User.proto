@@ -25,5 +25,6 @@ message ChangeProfileImageRequest {
 
 message ChangeProfileImageResponse {
 	bool IsAdded = 1;
+	string OldImagePath = 2;
 }
 

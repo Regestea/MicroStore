@@ -18,7 +18,7 @@ namespace AWS.API.GrpcServices.CatalogCategory
             return existCatalogCategory.Exist;
         }
 
-        public async Task<bool> ChangeCatalogCategoryImagePathAsync(string catalogCategoryId, string imagePath)
+        public async Task<ChangeCatalogCategoryImagePathResponse> ChangeCatalogCategoryImagePathAsync(string catalogCategoryId, string imagePath)
         {
             var addImageResponse = await _catalogCategoryProtoService.ChangeCatalogCategoryImagePathAsync(
                 new ChangeCatalogCategoryImagePathRequest()
@@ -27,7 +27,7 @@ namespace AWS.API.GrpcServices.CatalogCategory
                     CatalogCategoryId = catalogCategoryId
                 });
 
-            return addImageResponse.IsAdded;
+            return addImageResponse;
         }
     }
 }

@@ -25,4 +25,5 @@ message ChangeCatalogCategoryImagePathRequest {
 
 message ChangeCatalogCategoryImagePathResponse {
 	bool IsAdded = 1;
+	string OldImagePath = 2;
 }
