@@ -11,212 +11,191 @@ namespace CatalogBrand.Infrastructure.Persistence.SeedDatas
                 new Brand()
                 {
                     Id = "62f09501cab21cd95430ea35",
-                    BrandName = "Apple",
+                    BrandName = "apple",
                     CategoryId = "62eff9bf5e2384861aba7b06",
-                    CategoryName = "Laptop"
+                    CategoryName = "laptop"
                 },
                 new Brand()
                 {
                     Id = "62f095302b7c543bf0c44956",
-                    BrandName = "HP",
+                    BrandName = "hp",
                     CategoryId = "62eff9bf5e2384861aba7b06",
-                    CategoryName = "Laptop"
+                    CategoryName = "laptop"
                 },
                 new Brand()
                 {
                     Id = "62f0953d7124cb2ffbf4dbfa",
-                    BrandName = "Microsoft",
+                    BrandName = "microsoft",
                     CategoryId = "62eff9bf5e2384861aba7b06",
-                    CategoryName = "Laptop"
+                    CategoryName = "laptop"
                 },
                 new Brand()
                 {
                     Id = "62f0954a581e1b5b36b6687a",
-                    BrandName = "Lenovo",
+                    BrandName = "lenovo",
                     CategoryId = "62eff9bf5e2384861aba7b06",
-                    CategoryName = "Laptop"
+                    CategoryName = "laptop"
                 },
                 new Brand()
                 {
                     Id = "62f09567c73f6ae5c643cdc6",
-                    BrandName = "Asus",
+                    BrandName = "asus",
                     CategoryId = "62eff9bf5e2384861aba7b06",
-                    CategoryName = "Laptop"
+                    CategoryName = "laptop"
                 },
                 new Brand()
                 {
                     Id = "62f09610097b73881d701bcc",
-                    BrandName = "Asus",
+                    BrandName = "asket",
                     CategoryId = "62eff9cab6d5f156482472d5",
-                    CategoryName = "Dresses"
+                    CategoryName = "dresses"
                 },
                 new Brand()
                 {
                     Id = "62f0961ce74febb95e16faef",
-                    BrandName = "Asus",
+                    BrandName = "knickerbocker",
                     CategoryId = "62eff9cab6d5f156482472d5",
-                    CategoryName = "Dresses"
-                },
-                new Brand()
-                {
-                    Id = "62f0962c0ae8345585fe9c1b",
-                    BrandName = "Asus",
-                    CategoryId = "62eff9cab6d5f156482472d5",
-                    CategoryName = "Dresses"
-                },
-                new Brand()
-                {
-                    Id = "62f09638d37328b8692db5b7",
-                    BrandName = "Asus",
-                    CategoryId = "62eff9cab6d5f156482472d5",
-                    CategoryName = "Dresses"
-                },
-                new Brand()
-                {
-                    Id = "62f0964be119ba0c35c4e362",
-                    BrandName = "Asus",
-                    CategoryId = "62eff9cab6d5f156482472d5",
-                    CategoryName = "Dresses"
+                    CategoryName = "dresses"
                 },
                 new Brand()
                 {
                     Id = "62f0975efc387a4917feec35",
-                    BrandName = "Apple",
+                    BrandName = "apple",
                     CategoryId = "62eff9d685a372bbc92253b2",
-                    CategoryName = "Phone"
+                    CategoryName = "phone"
                 },
                 new Brand()
                 {
                     Id = "62f0976df2a174c9c237892b",
-                    BrandName = "Samsung",
+                    BrandName = "samsung",
                     CategoryId = "62eff9d685a372bbc92253b2",
-                    CategoryName = "Phone"
+                    CategoryName = "phone"
                 },
                 new Brand()
                 {
                     Id = "62f0977ae336004189ed9518",
-                    BrandName = "OnePlus",
+                    BrandName = "oneplus",
                     CategoryId = "62eff9d685a372bbc92253b2",
-                    CategoryName = "Phone"
+                    CategoryName = "phone"
                 },
                 new Brand()
                 {
                     Id = "62f0978e1887486ec8b2a8d7",
-                    BrandName = "Xiaomi",
+                    BrandName = "xiaomi",
                     CategoryId = "62eff9d685a372bbc92253b2",
-                    CategoryName = "Phone"
+                    CategoryName = "phone"
                 },
                 new Brand()
                 {
                     Id = "62f09798ec39cb0768f32a7c",
-                    BrandName = "Huawei",
+                    BrandName = "huawei",
                     CategoryId = "62eff9d685a372bbc92253b2",
-                    CategoryName = "Phone"
+                    CategoryName = "phone"
                 },
                 new Brand()
                 {
                     Id = "62f099380947fb99c5593dff",
-                    BrandName = "LG",
+                    BrandName = "lg",
                     CategoryId = "62eff9e1b53914ea3cfd39d3",
-                    CategoryName = "TV"
+                    CategoryName = "tv"
                 },
                 new Brand()
                 {
                     Id = "62f09943b4d2d06a76222ce0",
-                    BrandName = "Samsung",
+                    BrandName = "samsung",
                     CategoryId = "62eff9e1b53914ea3cfd39d3",
-                    CategoryName = "TV"
+                    CategoryName = "tv"
                 },
                 new Brand()
                 {
                     Id = "62f09950253c1e9da07574dd",
-                    BrandName = "Sony",
+                    BrandName = "sony",
                     CategoryId = "62eff9e1b53914ea3cfd39d3",
-                    CategoryName = "TV"
+                    CategoryName = "tv"
                 },
                 new Brand()
                 {
                     Id = "62f0995e23dd4d4545ff5891",
-                    BrandName = "TCL",
+                    BrandName = "tcl",
                     CategoryId = "62eff9e1b53914ea3cfd39d3",
-                    CategoryName = "TV"
+                    CategoryName = "tv"
                 },
                 new Brand()
                 {
                     Id = "62f0996810006c7eed23d18a",
-                    BrandName = "Philips",
+                    BrandName = "philips",
                     CategoryId = "62eff9e1b53914ea3cfd39d3",
-                    CategoryName = "TV"
+                    CategoryName = "tv"
                 },
                 new Brand()
                 {
                     Id = "62f09b28731cb678cb70e002",
-                    BrandName = "Sony",
+                    BrandName = "sony",
                     CategoryId = "62eff9ee1c3a5e870a843ae5",
-                    CategoryName = "Headset"
+                    CategoryName = "headset"
                 },
                 new Brand()
                 {
                     Id = "62f09b329ffdbfac617117d1",
-                    BrandName = "Apple",
+                    BrandName = "apple",
                     CategoryId = "62eff9ee1c3a5e870a843ae5",
-                    CategoryName = "Headset"
+                    CategoryName = "headset"
                 },
                 new Brand()
                 {
                     Id = "62f09b3cf34a1d85a1468cbe",
-                    BrandName = "JBL",
+                    BrandName = "jbl",
                     CategoryId = "62eff9ee1c3a5e870a843ae5",
-                    CategoryName = "Headset"
+                    CategoryName = "headset"
                 },
                 new Brand()
                 {
                     Id = "62f09b4b53cd3e5c44447d3a",
-                    BrandName = "Beats",
+                    BrandName = "beats",
                     CategoryId = "62eff9ee1c3a5e870a843ae5",
-                    CategoryName = "Headset"
+                    CategoryName = "headset"
                 },
                 new Brand()
                 {
                     Id = "62f09b5566c769250737ebc3",
-                    BrandName = "Razer",
+                    BrandName = "razer",
                     CategoryId = "62eff9ee1c3a5e870a843ae5",
-                    CategoryName = "Headset"
+                    CategoryName = "headset"
                 },
                 new Brand()
                 {
                     Id = "62f09c945f7977bc6c611790",
-                    BrandName = "Acer",
+                    BrandName = "acer",
                     CategoryId = "62eff9fc958ac1316d9d73a5",
-                    CategoryName = "Monitor"
+                    CategoryName = "monitor"
                 },
                 new Brand()
                 {
                     Id = "62f09c9e43bf0c74b4f60aa2",
-                    BrandName = "ASUS",
+                    BrandName = "asus",
                     CategoryId = "62eff9fc958ac1316d9d73a5",
-                    CategoryName = "Monitor"
+                    CategoryName = "monitor"
                 },
                 new Brand()
                 {
                     Id = "62f09cc6c970c10018c6cd42",
-                    BrandName = "Dell",
+                    BrandName = "dell",
                     CategoryId = "62eff9fc958ac1316d9d73a5",
-                    CategoryName = "Monitor"
+                    CategoryName = "monitor"
                 },
                 new Brand()
                 {
                     Id = "62f09cd40610a777736f05a0",
-                    BrandName = "Gigabyte",
+                    BrandName = "gigabyte",
                     CategoryId = "62eff9fc958ac1316d9d73a5",
-                    CategoryName = "Monitor"
+                    CategoryName = "monitor"
                 },
                 new Brand()
                 {
                     Id = "62f09cdd189cc605c13da557",
-                    BrandName = "Samsung",
+                    BrandName = "samsung",
                     CategoryId = "62eff9fc958ac1316d9d73a5",
-                    CategoryName = "Monitor"
+                    CategoryName = "monitor"
                 },
             };
         }
