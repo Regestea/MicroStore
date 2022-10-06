@@ -11,32 +11,32 @@ namespace CatalogCategory.Infrastructure.Persistence.SeedDatas
                 new Category()
                 {
                     Id = "62eff9bf5e2384861aba7b06",
-                    CategoryName = "Laptop"
+                    CategoryName = "laptop"
                 },
                 new Category()
                 {
                     Id = "62eff9cab6d5f156482472d5",
-                    CategoryName = "Dresses"
+                    CategoryName = "dresses"
                 },
                 new Category()
                 {
                     Id = "62eff9d685a372bbc92253b2",
-                    CategoryName = "Phone"
+                    CategoryName = "phone"
                 },
                 new Category()
                 {
                     Id = "62eff9e1b53914ea3cfd39d3",
-                    CategoryName = "TV"
+                    CategoryName = "tv"
                 },
                 new Category()
                 {
                     Id = "62eff9ee1c3a5e870a843ae5",
-                    CategoryName = "Headset"
+                    CategoryName = "headset"
                 },
                 new Category()
                 {
                     Id = "62eff9fc958ac1316d9d73a5",
-                    CategoryName = "Monitor"
+                    CategoryName = "monitor"
                 }
             };
         }
