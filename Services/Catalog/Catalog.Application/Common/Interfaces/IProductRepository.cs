@@ -1,4 +1,5 @@
 ﻿using Catalog.Application.Common.DTOs;
+using Catalog.Application.Common.DTOs.Responses;
 using Catalog.Application.Common.Models;
 
 namespace Catalog.Application.Common.Interfaces
@@ -9,7 +10,7 @@ namespace Catalog.Application.Common.Interfaces
         Task<ProductDTO> GetProductById(string productId);
         Task<bool> IsProductExist(string productId);
         Task<bool> AddImageToProduct(string productId, string imagePath);
-        Task<bool> EditProductImage(string productId, string oldImagePath, string newImagePath);
+        Task<ChangeImagePathResponse> EditProductImage(string productId, int oldImageIndex, string imagePath);
         Task<bool> RemoveImageFromProduct(string productId, string imagePath);
         //move product image one step to end of list
         Task<bool> IncreaseProductImageIndex(string productId, string imagePath);

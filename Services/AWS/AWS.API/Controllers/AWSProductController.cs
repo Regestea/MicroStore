@@ -34,7 +34,6 @@ namespace AWS.API.Controllers
 
             var filePath = await _fileRepository.UploadFile(Buckets.Names.microstoreproduct, filesUploadModel.image, S3CannedACL.PublicRead);
 
-
             bool isAdded = await _productGrpcService.AddProductImageAsync(productId, filePath);
 
             if (!isAdded)
@@ -46,11 +45,10 @@ namespace AWS.API.Controllers
         }
 
 
-        [HttpPatch("{productId}")]
-        public async Task<IActionResult> EditProductImage([FromForm] FileUploadModel filesUploadModel, [FromQuery] string oldImagePath, [FromRoute] string productId)
+        [HttpPatch("{productId}/{oldImageIndex}")]
+        public async Task<IActionResult> EditProductImage([FromForm] FileUploadModel filesUploadModel, [FromRoute] int oldImageIndex, [FromRoute] string productId)
         {
 
-            Console.WriteLine(oldImagePath);
             bool isObjectOwnerExist = await _productGrpcService.ExistProductAsync(productId);
 
             if (!isObjectOwnerExist)
@@ -58,19 +56,25 @@ namespace AWS.API.Controllers
                 return BadRequest("Owner doesn't exist ");
             }
 
-            //TODO: validate old image path with grpc
-
             var filePath = await _fileRepository.UploadFile(Buckets.Names.microstoreproduct, filesUploadModel.image, S3CannedACL.PublicRead);
 
+            var response = await _productGrpcService.EditProductImageAsync(productId, oldImageIndex, filePath);
 
-            bool isAdded = await _productGrpcService.EditProductImageAsync(productId, oldImagePath, filePath);
-
-            if (!isAdded)
+            if (response.IsSuccess)
             {
-                return BadRequest("something wrong nothing changed");
+                if (!string.IsNullOrEmpty(response.OldImagePath))
+                {
+                    var oldFilePath = response.OldImagePath.Split("/");
+                    await _fileRepository.DeleteFile(oldFilePath[1], oldFilePath[2]);
+                }
+                return NoContent();
             }
 
-            return NoContent();
+            //delete uploaded image
+            var uploadedImageFilePath = filePath.Split("/");
+            await _fileRepository.DeleteFile(uploadedImageFilePath[1], uploadedImageFilePath[2]);
+
+            return BadRequest("Internal error please try again");
         }
 
     }

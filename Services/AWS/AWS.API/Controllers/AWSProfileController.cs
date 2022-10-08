@@ -45,6 +45,10 @@ namespace AWS.API.Controllers
                 return NoContent();
             }
 
+            //delete uploaded image
+            var uploadedImageFilePath = filePath.Split("/");
+            await _fileRepository.DeleteFile(uploadedImageFilePath[1], uploadedImageFilePath[2]);
+
             return BadRequest("Internal error please try again");
 
         }

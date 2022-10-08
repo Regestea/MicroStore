@@ -27,9 +27,9 @@ namespace Catalog.GRPC.Services
 
         public override async Task<EditImageResponse> EditImage(EditImageRequest request, ServerCallContext context)
         {
-            var editImageResult = await _productRepository.EditProductImage(request.ProductId, request.OldFilePath, request.NewFilePath);
+            var editImageResult = await _productRepository.EditProductImage(request.ProductId, request.OldImageIndex, request.ImagePath);
 
-            return new EditImageResponse() { IsSuccess = editImageResult };
+            return new EditImageResponse() { IsSuccess = editImageResult.IsSuccess, OldImagePath = editImageResult.OldImagePath };
         }
     }
 }

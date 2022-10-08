@@ -31,10 +31,11 @@ message AddImageResponse {
 //EditImage message
 message EditImageRequest {
 	string productId = 1;
-	string OldFilePath= 2;
-	string NewFilePath= 3;
+	int32  OldImageIndex= 2;
+	string ImagePath= 3;
 }
 
 message EditImageResponse {
 	bool IsSuccess = 1;
+	string OldImagePath = 2;
 }

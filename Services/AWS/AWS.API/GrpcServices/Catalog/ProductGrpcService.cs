@@ -26,12 +26,13 @@ namespace AWS.API.GrpcServices.Catalog
             return addImageResponse.IsSuccess;
         }
 
-        public async Task<bool> EditProductImageAsync(string productId, string oldFilePath, string newFilePath)
+        public async Task<EditImageResponse> EditProductImageAsync(string productId, int oldImageIndex, string imagePath)
         {
-            var editImageRequest = new EditImageRequest() { ProductId = productId, OldFilePath = oldFilePath, NewFilePath = newFilePath };
+            var editImageRequest = new EditImageRequest() { ProductId = productId, OldImageIndex = oldImageIndex, ImagePath = imagePath };
+
             var editImageResponse = await _productProtoService.EditImageAsync(editImageRequest);
 
-            return editImageResponse.IsSuccess;
+            return editImageResponse;
         }
     }
 }

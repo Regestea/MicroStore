@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Catalog.Application.Common.DTOs;
+using Catalog.Application.Common.DTOs.Responses;
 using Catalog.Application.Common.Interfaces;
 using Catalog.Application.Common.Models;
 using Catalog.Domain.Entities;
@@ -89,26 +90,31 @@ namespace Catalog.Infrastructure.Persistence.Repository
             return true;
         }
 
-        public async Task<bool> EditProductImage(string productId, string oldImagePath, string newImagePath)
+        public async Task<ChangeImagePathResponse> EditProductImage(string productId, int oldImageIndex, string imagePath)
         {
 
             var pictures = await _catalogContext.Products.Find(x => x.Id == productId).Project(p => p.Pictures).SingleOrDefaultAsync();
 
-            if (pictures == null) return false;
+            if (pictures == null) return new ChangeImagePathResponse() { IsSuccess = false };
 
-            var oldImageIndex = pictures.FindIndex(x => x.ImagePath == oldImagePath);
+            var maxImageIndex = pictures.Count - 1;
 
-            if (oldImageIndex == -1) return false;
+            if ((oldImageIndex > maxImageIndex) || (oldImageIndex < 0))
+            {
+                return new ChangeImagePathResponse() { IsSuccess = false };
+            }
+
+            string oldImagePath = pictures[oldImageIndex].ImagePath;
 
             pictures.RemoveAt(oldImageIndex);
 
-            pictures.Insert(oldImageIndex, new ProductPicture() { ImagePath = newImagePath });
+            pictures.Insert(oldImageIndex, new ProductPicture() { ImagePath = imagePath });
 
             var update = Builders<Product>.Update.Set(x => x.Pictures, pictures);
 
             var updateResult = await _catalogContext.Products.UpdateOneAsync(x => x.Id == productId, update);
 
-            return (updateResult.IsModifiedCountAvailable);
+            return new ChangeImagePathResponse() { IsSuccess = updateResult.IsModifiedCountAvailable, OldImagePath = oldImagePath };
         }
 
 
