@@ -25,7 +25,7 @@ message AddImageRequest {
 }
 
 message AddImageResponse {
-	bool IsAdded = 1;
+	bool IsSuccess = 1;
 }
 
 //EditImage message
@@ -36,5 +36,5 @@ message EditImageRequest {
 }
 
 message EditImageResponse {
-	bool IsEdited = 1;
+	bool IsSuccess = 1;
 }

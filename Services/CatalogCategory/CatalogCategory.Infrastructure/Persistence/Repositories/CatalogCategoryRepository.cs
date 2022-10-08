@@ -1,4 +1,5 @@
-﻿using CatalogCategory.Application.Common.Interfaces;
+﻿using CatalogCategory.Application.Common.DTOs.Responses;
+using CatalogCategory.Application.Common.Interfaces;
 using CatalogCategory.Domain.Entities;
 using MongoDB.Driver;
 
@@ -19,7 +20,7 @@ namespace CatalogCategory.Infrastructure.Persistence.Repositories
             return await _catalogCategoryContext.Categories.Find(x => x.Id == catalogCategoryId).AnyAsync();
         }
 
-        public async Task<(bool, string)> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath)
+        public async Task<ChangeImagePathResponse> ChangeCatalogCategoryImagePath(string catalogCategoryId, string imagePath)
         {
             var oldImagePath = await _catalogCategoryContext.Categories
                 .Find(x => x.Id == catalogCategoryId)
@@ -32,7 +33,7 @@ namespace CatalogCategory.Infrastructure.Persistence.Repositories
 
             var result = await _catalogCategoryContext.Categories.UpdateOneAsync(filter, update);
 
-            return (result.IsModifiedCountAvailable, oldImagePath);
+            return new ChangeImagePathResponse() { IsSuccess = result.IsModifiedCountAvailable, OldImagePath = oldImagePath };
         }
     }
 }

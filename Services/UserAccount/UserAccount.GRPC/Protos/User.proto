@@ -24,7 +24,7 @@ message ChangeProfileImageRequest {
 }
 
 message ChangeProfileImageResponse {
-	bool IsAdded = 1;
+	bool IsSuccess = 1;
 	string OldImagePath = 2;
 }
 

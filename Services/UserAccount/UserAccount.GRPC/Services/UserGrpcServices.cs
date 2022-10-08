@@ -20,9 +20,9 @@ namespace UserAccount.GRPC.Services
 
         public override async Task<ChangeProfileImageResponse> ChangeProfileImage(ChangeProfileImageRequest request, ServerCallContext context)
         {
-            bool isAdded = await _UserRepository.ChangeProfileImageAsync(request.UserId, request.FilePath);
+            var response = await _UserRepository.ChangeProfileImageAsync(request.UserId, request.FilePath);
 
-            return new ChangeProfileImageResponse() { IsAdded = isAdded };
+            return new ChangeProfileImageResponse() { IsSuccess = response.IsSuccess, OldImagePath = response.OldImagePath };
         }
 
     }

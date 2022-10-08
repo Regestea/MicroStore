@@ -22,14 +22,14 @@ namespace Catalog.GRPC.Services
         {
             var addImageResult = await _productRepository.AddImageToProduct(request.ProductId, request.FilePath);
 
-            return new AddImageResponse() { IsAdded = addImageResult };
+            return new AddImageResponse() { IsSuccess = addImageResult };
         }
 
         public override async Task<EditImageResponse> EditImage(EditImageRequest request, ServerCallContext context)
         {
             var editImageResult = await _productRepository.EditProductImage(request.ProductId, request.OldFilePath, request.NewFilePath);
 
-            return new EditImageResponse() { IsEdited = editImageResult };
+            return new EditImageResponse() { IsSuccess = editImageResult };
         }
     }
 }

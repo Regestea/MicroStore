@@ -20,13 +20,13 @@ namespace AWS.API.GrpcServices.UserAccount
             return result.Exist;
         }
 
-        public async Task<bool> ChangeProfileImageAsync(string userId, string filePath)
+        public async Task<ChangeProfileImageResponse> ChangeProfileImageAsync(string userId, string filePath)
         {
             var request = new ChangeProfileImageRequest() { UserId = userId, FilePath = filePath };
 
             var result = await _userProtoService.ChangeProfileImageAsync(request);
 
-            return result.IsAdded;
+            return result;
         }
 
     }

@@ -24,7 +24,7 @@ namespace CatalogCategory.GRPC.Services
         {
             var result = await _catalogCategoryRepository.ChangeCatalogCategoryImagePath(request.CatalogCategoryId, request.ImagePath);
 
-            return new ChangeCatalogCategoryImagePathResponse() { IsAdded = result.Item1, OldImagePath = result.Item2 };
+            return new ChangeCatalogCategoryImagePathResponse() { IsSuccess = result.IsSuccess, OldImagePath = result.OldImagePath };
         }
     }
 }

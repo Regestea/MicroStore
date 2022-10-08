@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserAccount.Application.Common.Interfaces;
 using UserAccount.Application.Common.Models.User;
+using UserAccount.Application.DTOs.Responses;
 using UserAccount.Domain.Entities;
 using UserAccount.Infrastructure.Persistence;
 
@@ -28,21 +29,24 @@ namespace UserAccount.Infrastructure.Repositories
             return exist;
         }
 
-        public async Task<bool> ChangeProfileImageAsync(string userId, string imagePath)
+        public async Task<ChangeImagePathResponse> ChangeProfileImageAsync(string userId, string imagePath)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
 
             if (user == null)
             {
-                return false;
+                return new ChangeImagePathResponse() { IsSuccess = false };
             }
+
+            var oldImagePath = user.Image;
+
             user.Image = imagePath;
 
             _context.Users.Update(user);
 
             var result = await _context.SaveChangesAsync();
 
-            return (result >= 1);
+            return new ChangeImagePathResponse() { IsSuccess = (result >= 1), OldImagePath = oldImagePath };
         }
 
         public async Task<bool> IsUserExistAsync(string userId)

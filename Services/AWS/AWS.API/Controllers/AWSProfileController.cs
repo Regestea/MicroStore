@@ -33,9 +33,20 @@ namespace AWS.API.Controllers
 
             var filePath = await _fileRepository.UploadFile(Buckets.Names.microstoreprofile, filesUploadModel.image, S3CannedACL.PublicRead);
 
-            await _userAccountGrpcService.ChangeProfileImageAsync(userId, filePath);
+            var response = await _userAccountGrpcService.ChangeProfileImageAsync(userId, filePath);
 
-            return NoContent();
+            if (response.IsSuccess)
+            {
+                if (!string.IsNullOrEmpty(response.OldImagePath))
+                {
+                    var oldFilePath = response.OldImagePath.Split("/");
+                    await _fileRepository.DeleteFile(oldFilePath[1], oldFilePath[2]);
+                }
+                return NoContent();
+            }
+
+            return BadRequest("Internal error please try again");
+
         }
 
     }

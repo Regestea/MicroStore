@@ -36,7 +36,7 @@ namespace AWS.API.Controllers
 
             var response = await _catalogCategoryGrpcService.ChangeCatalogCategoryImagePathAsync(catalogCategoryId, filePath);
 
-            if (response.IsAdded)
+            if (response.IsSuccess)
             {
                 if (!string.IsNullOrEmpty(response.OldImagePath))
                 {

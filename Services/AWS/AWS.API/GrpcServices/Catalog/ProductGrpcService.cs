@@ -23,7 +23,7 @@ namespace AWS.API.GrpcServices.Catalog
             var addImageRequest = new AddImageRequest() { ProductId = productId, FilePath = filePath };
             var addImageResponse = await _productProtoService.AddImageAsync(addImageRequest);
 
-            return addImageResponse.IsAdded;
+            return addImageResponse.IsSuccess;
         }
 
         public async Task<bool> EditProductImageAsync(string productId, string oldFilePath, string newFilePath)
@@ -31,7 +31,7 @@ namespace AWS.API.GrpcServices.Catalog
             var editImageRequest = new EditImageRequest() { ProductId = productId, OldFilePath = oldFilePath, NewFilePath = newFilePath };
             var editImageResponse = await _productProtoService.EditImageAsync(editImageRequest);
 
-            return editImageResponse.IsEdited;
+            return editImageResponse.IsSuccess;
         }
     }
 }

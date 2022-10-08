@@ -1,4 +1,5 @@
 ﻿using UserAccount.Application.Common.Models.User;
+using UserAccount.Application.DTOs.Responses;
 using UserAccount.Domain.Entities;
 
 namespace UserAccount.Application.Common.Interfaces
@@ -9,7 +10,7 @@ namespace UserAccount.Application.Common.Interfaces
 
         Task<bool> IsEmailExistAsync(string email);
 
-        Task<bool> ChangeProfileImageAsync(string userId, string imagePath);
+        Task<ChangeImagePathResponse> ChangeProfileImageAsync(string userId, string imagePath);
 
         Task<bool> IsUserExistAsync(string userId);
 
