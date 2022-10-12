@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "AWS.GRPC.Protos";
+
+service DeleteImageProtoService {
+
+	rpc DeleteImage (DeleteImageRequest) returns (DeleteImageResponse);
+	
+}
+
+//DeleteImage
+message DeleteImageRequest {
+	string ImagePath =1;
+}
+
+message DeleteImageResponse{
+	
+}
+

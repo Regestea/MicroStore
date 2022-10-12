@@ -1,6 +1,6 @@
 ﻿namespace CatalogCategory.Application.Common.DTOs.Responses
 {
-    public class ChangeImagePathResponse
+    public class ImagePathResponse
     {
         public bool IsSuccess { get; set; }
 

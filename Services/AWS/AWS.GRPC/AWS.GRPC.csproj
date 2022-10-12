@@ -4,29 +4,28 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>ac5c4759-aac4-446a-9263-5851095d1782</UserSecretsId>
+    <UserSecretsId>5b9c9b6f-1e2e-4a3c-ab8d-291fe19306c2</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\DeleteImage.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CatalogCategory.Infrastructure\CatalogCategory.Infrastructure.csproj" />
+    <ProjectReference Include="..\AWS.Application\AWS.Application.csproj" />
+    <ProjectReference Include="..\AWS.Infrastructure\AWS.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\AWS\AWS.GRPC\Protos\DeleteImage.proto" GrpcServices="Client">
-      <Link>Protos\DeleteImage.proto</Link>
-    </Protobuf>
+    <Protobuf Include="Protos\DeleteImage.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

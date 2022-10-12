@@ -119,58 +119,80 @@ namespace Catalog.Infrastructure.Persistence.Repository
 
 
 
-        public async Task<bool> RemoveImageFromProduct(string productId, string imagePath)
+        public async Task<RemoveImagePathResponse> RemoveImageFromProduct(string productId, int imageIndex)
         {
-            var product = await _catalogContext.Products.Find(x => x.Id == productId).SingleOrDefaultAsync();
+            var pictures = await _catalogContext.Products.Find(x => x.Id == productId).Project(p => p.Pictures).SingleOrDefaultAsync();
 
-            if (product == null) return false;
+            if (pictures == null) return new RemoveImagePathResponse() { IsSuccess = false };
 
-            product.Pictures.Remove(new ProductPicture() { ImagePath = imagePath });
+            var maxImageIndex = pictures.Count - 1;
 
-            return true;
+            if ((imageIndex > maxImageIndex) || (imageIndex < 0))
+            {
+                return new RemoveImagePathResponse() { IsSuccess = false };
+            }
+
+            var removeImagePath = pictures[imageIndex].ImagePath;
+
+            pictures.RemoveAt(imageIndex);
+
+            var update = Builders<Product>.Update.Set(x => x.Pictures, pictures);
+
+            var updateResult = await _catalogContext.Products.UpdateOneAsync(x => x.Id == productId, update);
+
+            return new RemoveImagePathResponse() { IsSuccess = updateResult.IsModifiedCountAvailable, RemovedImagePath = removeImagePath };
         }
 
-        public async Task<bool> IncreaseProductImageIndex(string productId, string imagePath)
+        public async Task<bool> IncreaseProductImageIndex(string productId, int imageIndex)
         {
-            var product = await _catalogContext.Products.Find(x => x.Id == productId).SingleOrDefaultAsync();
+            var pictures = await _catalogContext.Products.Find(x => x.Id == productId).Project(p => p.Pictures).SingleOrDefaultAsync();
 
-            if (product == null) return false;
+            if (pictures == null) return false;
 
-            int imagePathIndex = product.Pictures.IndexOf(new ProductPicture() { ImagePath = imagePath });
+            var maxImageIndex = pictures.Count - 1;
 
-            if (imagePathIndex == -1) return false;
-
-            int productPictureCount = product.Pictures.Count();
-
-            if (imagePathIndex == (productPictureCount - 1) || productPictureCount == 1)
+            if ((imageIndex >= maxImageIndex) || (imageIndex < 0))
             {
                 return false;
             }
-            product.Pictures.RemoveAt(imagePathIndex);
-            product.Pictures.Insert(imagePathIndex + 1, new ProductPicture() { ImagePath = imagePath });
 
-            return true;
+            var imagePath = pictures[imageIndex].ImagePath;
 
+            pictures.RemoveAt(imageIndex);
+
+            pictures.Insert(imageIndex + 1, new ProductPicture() { ImagePath = imagePath });
+
+            var update = Builders<Product>.Update.Set(x => x.Pictures, pictures);
+
+            var updateResult = await _catalogContext.Products.UpdateOneAsync(x => x.Id == productId, update);
+
+            return updateResult.IsModifiedCountAvailable;
         }
 
-        public async Task<bool> DecreaseProductImageIndex(string productId, string imagePath)
+        public async Task<bool> DecreaseProductImageIndex(string productId, int imageIndex)
         {
-            var product = await _catalogContext.Products.Find(x => x.Id == productId).SingleOrDefaultAsync();
+            var pictures = await _catalogContext.Products.Find(x => x.Id == productId).Project(p => p.Pictures).SingleOrDefaultAsync();
 
-            if (product == null) return false;
+            if (pictures == null) return false;
 
-            int imagePathIndex = product.Pictures.IndexOf(new ProductPicture() { ImagePath = imagePath });
+            var maxImageIndex = pictures.Count - 1;
 
-            if (imagePathIndex == -1) return false;
+            if ((imageIndex > maxImageIndex) || (imageIndex <= 0))
+            {
+                return false;
+            }
 
-            int productPictureCount = product.Pictures.Count();
+            var imagePath = pictures[imageIndex].ImagePath;
 
-            if (imagePathIndex == 0 || productPictureCount == 1) return false;
+            pictures.RemoveAt(imageIndex);
+            pictures.Insert(imageIndex - 1, new ProductPicture() { ImagePath = imagePath });
 
-            product.Pictures.RemoveAt(imagePathIndex);
-            product.Pictures.Insert(imagePathIndex - 1, new ProductPicture() { ImagePath = imagePath });
+            var update = Builders<Product>.Update.Set(x => x.Pictures, pictures);
 
-            return true;
+            var updateResult = await _catalogContext.Products.UpdateOneAsync(x => x.Id == productId, update);
+
+            return updateResult.IsModifiedCountAvailable;
+
         }
     }
 }

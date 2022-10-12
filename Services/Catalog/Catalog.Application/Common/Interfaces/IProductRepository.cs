@@ -11,10 +11,11 @@ namespace Catalog.Application.Common.Interfaces
         Task<bool> IsProductExist(string productId);
         Task<bool> AddImageToProduct(string productId, string imagePath);
         Task<ChangeImagePathResponse> EditProductImage(string productId, int oldImageIndex, string imagePath);
-        Task<bool> RemoveImageFromProduct(string productId, string imagePath);
+        Task<RemoveImagePathResponse> RemoveImageFromProduct(string productId, int imageIndex);
+
         //move product image one step to end of list
-        Task<bool> IncreaseProductImageIndex(string productId, string imagePath);
+        Task<bool> IncreaseProductImageIndex(string productId, int imageIndex);
         //move product image one step to first of list
-        Task<bool> DecreaseProductImageIndex(string productId, string imagePath);
+        Task<bool> DecreaseProductImageIndex(string productId, int imageIndex);
     }
 }

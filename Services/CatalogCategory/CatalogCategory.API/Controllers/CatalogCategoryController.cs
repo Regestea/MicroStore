@@ -1,6 +1,6 @@
 ﻿using CatalogCategory.Application.Common.Interfaces;
+using CatalogCategory.Application.Common.Models;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 
 namespace CatalogCategory.API.Controllers
 {
@@ -8,18 +8,19 @@ namespace CatalogCategory.API.Controllers
     [ApiController]
     public class CatalogCategoryController : ControllerBase
     {
-        private ICatalogCategoryContext _catalogCategoryContext;
+        private ICatalogCategoryRepository _catalogCategoryRepository;
 
-        public CatalogCategoryController(ICatalogCategoryContext catalogCategoryContext)
+        public CatalogCategoryController(ICatalogCategoryRepository catalogCategoryRepository)
         {
-            _catalogCategoryContext = catalogCategoryContext;
+            _catalogCategoryRepository = catalogCategoryRepository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        [ProducesResponseType(typeof(List<CatalogCategoryModel>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetCatalogCategory()
         {
-            var ss = await _catalogCategoryContext.Categories.Find(p => true).ToListAsync();
-            return Ok(ss);
+            var catalogCategoryList = await _catalogCategoryRepository.GetCatalogCategoryList();
+            return Ok(catalogCategoryList);
         }
     }
 }

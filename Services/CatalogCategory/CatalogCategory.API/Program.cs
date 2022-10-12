@@ -1,3 +1,5 @@
+using AWS.GRPC.Protos;
+using CatalogCategory.API.GrpcServices.AWS;
 using CatalogCategory.Infrastructure;
 using Newtonsoft.Json.Converters;
 
@@ -11,6 +13,11 @@ builder.Services.AddControllers().AddNewtonsoftJson(jsonOptions =>
 });
 
 builder.Services.AddSwaggerGenNewtonsoftSupport();
+
+builder.Services.AddGrpcClient<DeleteImageProtoService.DeleteImageProtoServiceClient>(o =>
+    o.Address = new Uri(builder.Configuration.GetSection("AWS:GrpcUrl").Value));
+
+builder.Services.AddScoped<AwsGrpcService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
