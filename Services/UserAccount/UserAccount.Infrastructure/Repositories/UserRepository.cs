@@ -29,13 +29,13 @@ namespace UserAccount.Infrastructure.Repositories
             return exist;
         }
 
-        public async Task<ChangeImagePathResponse> ChangeProfileImageAsync(string userId, string imagePath)
+        public async Task<ImagePathResponse> ChangeProfileImageAsync(string userId, string imagePath)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
 
             if (user == null)
             {
-                return new ChangeImagePathResponse() { IsSuccess = false };
+                return new ImagePathResponse() { IsSuccess = false };
             }
 
             var oldImagePath = user.Image;
@@ -46,7 +46,7 @@ namespace UserAccount.Infrastructure.Repositories
 
             var result = await _context.SaveChangesAsync();
 
-            return new ChangeImagePathResponse() { IsSuccess = (result >= 1), OldImagePath = oldImagePath };
+            return new ImagePathResponse() { IsSuccess = (result >= 1), OldImagePath = oldImagePath };
         }
 
         public async Task<bool> IsUserExistAsync(string userId)
@@ -68,6 +68,20 @@ namespace UserAccount.Infrastructure.Repositories
             await _context.SaveChangesAsync();
 
             return user.Id;
+        }
+
+        public async Task<ImagePathResponse> RemoveProfileImageAsync(string userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id.ToString() == userId);
+            if (user == null) return new ImagePathResponse() { IsSuccess = false };
+
+            var oldImagePath = user.Image;
+            user.Image = null;
+            var result = _context.Users.Update(user);
+
+            await _context.SaveChangesAsync();
+
+            return new ImagePathResponse() { IsSuccess = result.IsKeySet, OldImagePath = oldImagePath };
         }
     }
 }

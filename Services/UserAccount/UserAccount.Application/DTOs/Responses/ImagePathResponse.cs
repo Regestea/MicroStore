@@ -1,6 +1,6 @@
 ﻿namespace UserAccount.Application.DTOs.Responses
 {
-    public class ChangeImagePathResponse
+    public class ImagePathResponse
     {
         public bool IsSuccess { get; set; }
 

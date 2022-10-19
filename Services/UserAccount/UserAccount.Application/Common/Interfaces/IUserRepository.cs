@@ -10,11 +10,13 @@ namespace UserAccount.Application.Common.Interfaces
 
         Task<bool> IsEmailExistAsync(string email);
 
-        Task<ChangeImagePathResponse> ChangeProfileImageAsync(string userId, string imagePath);
+        Task<ImagePathResponse> ChangeProfileImageAsync(string userId, string imagePath);
 
         Task<bool> IsUserExistAsync(string userId);
 
         Task<Guid> CreateUserAsync(CreateUserModel userModel);
+
+        Task<ImagePathResponse> RemoveProfileImageAsync(string userId);
 
     }
 }
