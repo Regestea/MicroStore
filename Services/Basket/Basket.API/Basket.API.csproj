@@ -4,28 +4,23 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>5b9c9b6f-1e2e-4a3c-ab8d-291fe19306c2</UserSecretsId>
+    <UserSecretsId>b2d7aba8-e1c9-40e8-8473-175637e1a02e</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
     <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Protos\DeleteImage.proto" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.50.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="MassTransit" Version="8.0.9" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AWS.Application\AWS.Application.csproj" />
-    <ProjectReference Include="..\AWS.Infrastructure\AWS.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Protobuf Include="Protos\DeleteImage.proto" GrpcServices="Server" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Messages\EventBus.Messages.csproj" />
   </ItemGroup>
 
 </Project>
